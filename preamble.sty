@@ -1,0 +1,51 @@
+\textwidth = 440pt
+\oddsidemargin = 10pt
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{patternmacros}
+
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usetikzlibrary{shapes}
+\usetikzlibrary{patterns}
+
+\newtheorem{thm}{Theorem}\crefname{thm}{Theorem}{Theorems}
+\newtheorem{lem}[thm]{Lemma}\crefname{lem}{Lemma}{Lemmas}
+\newtheorem{ex}[thm]{Example}\crefname{ex}{Example}{Examples}
+\newtheorem{cor}[thm]{Corollary}\crefname{cor}{Corollary}{Corollaries}
+\newtheorem{conj}[thm]{Conjecture}\crefname{conj}{Conjecture}{Conjectures}
+\newtheorem{prop}[thm]{Proposition}\crefname{prop}{Proposition}{Propositions}
+\newtheorem{defn}[thm]{Definition}\crefname{defn}{Definition}{Definitions}
+\newtheorem{rem}[thm]{Remark}\crefname{rem}{Remark}{Remarks}
+\newtheorem{que}[thm]{Question}\crefname{que}{Question}{Questions}
+\newtheorem{clm}{Claim}\crefname{clm}{Claim}{Claims}
+\crefname{figure}{Figure}{Figure}
+
+\DeclareMathOperator{\rk}{\textrm{rk}}
+\DeclareMathOperator{\cl}{\textrm{cl}}
+\DeclareMathOperator{\sh}{\textrm{sh}}
+\DeclareMathOperator{\muP}{\mu_\mathcal{P}}
+\DeclareMathOperator{\muM}{\mu_\mathcal{M}}
+\DeclareMathOperator{\leP}{\le_{\mathcal{P}}}
+\DeclareMathOperator{\leM}{\le_{\mathcal{M}}}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{thm}{section}
+
+\author{Jason P Smith\thanks{This research was supported by the EPSRC Grant EP/M027147/1}}
