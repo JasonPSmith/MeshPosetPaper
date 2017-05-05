@@ -29,6 +29,13 @@ We can extend this definition to define an occurrence in a mesh pattern. Conside
 An \emph{occurrence} of $m$ in $p$ is an occurrence $\alpha$ of $\cl(m)$ in $\cl(p)$ satisfying $\bigcup_{(i,j)\in \sh(m)}R^\alpha_{i,j}\subseteq\sh(p)$ and $G(p)\cap\bigcup_{(i,j)\in \sh(m)}R^\alpha_{i,j}=\emptyset$. This is equivalent to saying every shaded point in $m$ corresponds to a fully shaded area in $p$ that contains no points.
 
 \begin{figure}\centering
+\subfigure{\patt{1}{2}{1,2}[0/2,2/2][][][][]}
+\patt{1}{3}{1,2,3}[0/0,0/2,0/3,1/3,1/1,1/2,2/1,2/2,3/3][][][][]
+\colpatt{1}{3}{1,2,3}[0/0,0/2,0/3,1/3,1/1,1/2,2/1,2/2,3/3][2/2,3/3][3/3,0/2,0/3,1/3,1/2]
+\caption{A mesh pattern with an occurrence of $12^{(0,2),(2,2)}$ shown in red, but does not contain $12^{(0,0),(1,1),(2,2)}$ due to a point and does not contain $12^{(1,1),(2,1)}$ due to a lack of shadings.}\label{fig:occEx}
+\end{figure}
+
+\begin{figure}\centering
 \begin{tikzpicture}
 \def\y{3}
 \def\x{3}
@@ -186,12 +193,12 @@ Note that containing an impure edge in $[m,p]$ does not necessarily imply there 
 \section{Topology}
 
 If $[\cl(s),\cl(p)]$ is (dis)connected in $\mathcal{P}$ it does no imply $[s,p]$ has the same property in $\mathcal{M}$. For example, the interval $[123,456123]$ is disconnected in the classical permutation poset but in $\mathcal{M}$ the interval $[123^{(3,0),(3,1),(3,2)},456123^{(6,0),(6,1),(6,2)}]$, see \cref{fig:123}, is chain, so is connected. Furthermore, the interval $[321,521643]$ is connected in $\mathcal{P}$ but $[321^{(1, 3)},521643^{(1, 5), (1, 6), (4, 6)}]$, see \cref{fig:321}, is disconnected in $\mathcal{M}$.
-\begin{figure}[h]\centering
+\begin{figure}\centering
 \patt{.5}{3}{1,2,3}[3/0,3/1,3/2][][][][][4]
 \patt{.5}{6}{4,5,6,1,2,3}[6/0,6/1,6/2][][][][][4]
 \caption{The mesh patterns $123^{(3,0),(3,1),(3,2)}$ and $456123^{(6,0),(6,1),(6,2)}$}\label{fig:123}
 \end{figure}
-\begin{figure}[h]\centering
+\begin{figure}\centering
 \patt{.5}{3}{3,2,1}[1/3][][][][][4]
 \patt{.5}{6}{5,2,1,6,4,3}[1/5,1/6,4/6][][][][][4]
 \caption{The mesh patterns $321^{(1, 3)}$ and $521643^{(1, 5), (1, 6), (4, 6)}$}\label{fig:321}
