@@ -7,15 +7,18 @@
 
 %\section{Introduction}
 
+% TODO Mention that fully shaded patterns are maximal elements in the mesh pattern poset
+
 \section{The Poset of Mesh Patterns}
 
-Mesh patterns were first introduced in \cite{Bra11} and a concept mesh pattern
-containment was introduced in \cite{TU17}. A mesh pattern is of the form
-$p=(\cl(p),\sh(p))$, where $\cl(p)$ is a permutation and $\sh(p)$ is a set of
-coordinates corresponding to the boxes that are shaded, where $(i,j)$ denotes
-the box $[i,i+1]\times[j,j+1]$, see \cref{fig:132}. We also denote $p$ by
-$\cl(p)^{\sh(p)}$, for example $132^\emptyset$ is the mesh pattern on $132$ with
-no shaded boxes. Let $G(p)$ be the set of coordinates of the points of $p$.
+Mesh patterns were first introduced in \cite{Bra11} and a concept of mesh
+pattern containment in another mesh pattern was introduced in \cite{TU17}. A
+mesh pattern is of the form $p=(\cl(p),\sh(p))$, where $\cl(p)$ is a permutation
+and $\sh(p)$ is a set of coordinates corresponding to the boxes that are shaded,
+where $(i,j)$ denotes the box $[i,i+1]\times[j,j+1]$, see \cref{fig:132}. We
+also denote $p$ by $\cl(p)^{\sh(p)}$, for example $132^\emptyset$ is the mesh
+pattern on $132$ with no shaded boxes. Let $G(p)$ be the set of coordinates of
+the points of $p$.
 
 We let $|\cl(p)|$ represent the length of $\cl(p)$ and $|\sh(p)|$ the size of
 $\sh(p)$, and define the length of $p$ as $|\cl(p)|$. We define the \emph{rank}
@@ -51,11 +54,11 @@ $\alpha$
 An \emph{occurrence} of $m$ in $p$ is an occurrence $\alpha$ of $\cl(m)$ in
 $\cl(p)$ satisfying $\bigcup_{(i,j)\in \sh(m)}R^\alpha_{i,j}\subseteq\sh(p)$ and
 $G(p)\cap\bigcup_{(i,j)\in \sh(m)}R^\alpha_{i,j}=\emptyset$. This is equivalent
-to saying every shaded point in $m$ corresponds to a fully shaded area in $p$
+to saying every shaded box in $m$ corresponds to a fully shaded area in $p$
 that contains no points.
 
 \begin{figure}\centering
-\patt{1}{2}{1,2}[0/2,2/2][][][][]
+\patt{1}{2}{1,2}[0/1,0/2,2/2][][][][]
 \patt{1}{3}{1,2,3}[0/0,0/2,0/3,1/3,1/1,1/2,2/1,2/2,3/3][][][][]
 \colpatt{1}{3}{1,2,3}[0/0,0/2,0/3,1/3,1/1,1/2,2/1,2/2,3/3][2/2,3/3][3/3,0/2,0/3,1/3,1/2]
 \caption{A mesh pattern with an occurrence of $12^{(0,2),(2,2)}$ shown in red,
@@ -104,7 +107,7 @@ First we consider the case that two mesh patterns have the same underlying
 permutation.
 \begin{lem}
 If $\cl(m)=\cl(p)$, then $[m,p]$ is isomorphic to the boolean lattice
-$B_{|\sh(p)|-|\sh(m)|}$ which implies $\mu(m,p)=(-1)^|\sh(p)|-|\sh(m)|$ and
+$B_{|\sh(p)|-|\sh(m)|}$ which implies $\mu(m,p)=(-1)^{|\sh(p)|-|\sh(m)|}$ and
 $[m,p]$ is shellable.
 \begin{proof}
 We cannot remove any points from $p$, we can only unshade boxes, and we can
@@ -175,8 +178,8 @@ non-initial letter is part of the occurrence, which implies the result.
 \end{proof}
 \end{lem}
 
-We can also see that the M\"obius function on $\mathcal{M}$ is not bounded the
-classical poset, that is, it is not true that $\muM(m,p)\le
+We can also see that the M\"obius function on $\mathcal{M}$ is not bounded by
+the classical poset, that is, it is not true that $\muM(m,p)\le
 \muP(\cl(m),\cl(p))$. A simple counterexample is the interval
 $[1^{(0,1)},123^{(0,2),(0,3),(1,2),(1,3)}]$, this has M\"obius number $1$,
 however $\muP(1,123)=0$.
@@ -184,7 +187,7 @@ however $\muP(1,123)=0$.
 If we consider intervals where the bottom mesh pattern has no shadings, then we
 get the following result:
 \begin{lem}\label{lem:mu0}
-Consider the interval $[m,p]$ in $\mathcal{M}$. If $\sh(m)=emptyset\not=\sh(p)$
+Consider the interval $[m,p]$ in $\mathcal{M}$. If $\sh(m)=\emptyset\not=\sh(p)$
 and there is no $s\in(m,p)$ with $\cl(s)=\cl(m)$, then $\mu(m,p)=0$.
 \begin{proof}
 Define a map $f(x)=\cl(x)^\emptyset$, for any $x\in(m,p)$. Let $A$
@@ -248,36 +251,37 @@ $n$ contains $m$ tends to $0$ as $n$ tends to infinity.
 \section{Purity}
 
 Interestingly the mesh pattern poset is not a pure poset, that is, not every
-maximal chain has the same length. We say an edge $x\lessdot y$ is \emph{impure}
-if $\rk(y)-\rk(x)>1$. Let $m-p$ be the mesh pattern obtained by deleting the
-point $p$ and let $m\setminus p$ be the occurrence of $m-p$ in $m$. We say that
-deleting a point $p$ \emph{merges shadings} if there is a shaded box in $m-p$
-that corresponds to more than $1$ shaded box in $m\setminus p$.
+maximal chain has the same length. We say an edge $m\lessdot p$ is \emph{impure}
+if $\rk(p)-\rk(m)>1$. Let $m-x$ be the mesh pattern obtained by deleting the
+point $x$ and let $m\setminus x$ be the occurrence of $m-x$ in $m$ that does not
+use the point $x$. We say that deleting a point $x$ \emph{merges shadings} if
+there is a shaded box in $m-x$ that corresponds to more than one shaded box in
+$m\setminus x$.
 
 \begin{lem}\label{lem:impureEdge}
-An edge between $x\lessdot y$ is impure if and only if all occurrences of $x$ in
-$y$ use all shaded boxes of $y$ and are obtained by deleting a point that merges
+An edge between $m\lessdot p$ is impure if and only if all occurrences of $m$ in
+$p$ use all shaded boxes of $p$ and are obtained by deleting a point that merges
 shading.
 \begin{proof}
-First we show the backwards direction. Because $x$ is obtained by deleting a
-point that merges shadings $x$ must have one less point and at least one less
-shading so $\rk(y)-\rk(x)\ge2$. So it suffices to show that there is no $z$ such
-that $x<z<y$. Suppose such a $z$ exists, then if $z$ is obtained by deshading a
-box in $y$ it can no longer contain $x$ because all occurrences of $x$ in $y$
-use all shaded areas of $y$. If $z$ is obtained by deleting a point, then that
-cannot remove shadings, only merge shadings, otherwise it wouldn't contain $x$,
-and it implies $cl(x)=cl(z)$. Moreover, if $x<z$ then we can deshade some boxes
-of $z$ to get $x$ which implies there is an occurrence of $x$ in $y$ that
-doesn't use all the shaded boxes of $y$.
+First we show the backwards direction. Because $m$ is obtained by deleting a
+point that merges shadings $m$ must have one less point and at least one less
+shading so $\rk(p)-\rk(m)\ge2$. So it suffices to show that there is no $z$ such
+that $m<z<p$. Suppose such a $z$ exists, then if $z$ is obtained by deshading a
+box in $p$ it can no longer contain $m$ because all occurrences of $m$ in $p$
+use all shaded areas of $p$. If $z$ is obtained by deleting a point, then that
+cannot remove shadings, only merge shadings, otherwise it wouldn't contain $m$,
+and it implies $cl(m)=cl(z)$. Moreover, if $m<z$ then we can deshade some boxes
+of $z$ to get $m$ which implies there is an occurrence of $m$ in $p$ that
+doesn't use all the shaded boxes of $p$.
 
-Now consider the forwards direction, so suppose $x\lessdot y$ is impure. So
-$\rk(y)-\rk(x)\ge2$, which implies $x$ is obtained by deleting a single point
+Now consider the forwards direction, so suppose $m\lessdot p$ is impure. So
+$\rk(p)-\rk(m)\ge2$, which implies $m$ is obtained by deleting a single point
 which merges shadings but does not delete shadings, because any other
 combination of deleting points and deshading can be done in successive steps.
-Furthermore, this must be true for any point that can be deleted to get $x$,
-that is, for all occurrences of $x$ in $y$. Moreover, if there is an occurrence
-that doesn't use all the shaded boxes of $y$, we can deshade the box it doesn't
-use and get an element that lies between $x$ and $y$.
+Furthermore, this must be true for any point that can be deleted to get $m$,
+that is, for all occurrences of $m$ in $p$. Moreover, if there is an occurrence
+that doesn't use all the shaded boxes of $p$, we can deshade the box it doesn't
+use and get an element that lies between $m$ and $p$.
 \end{proof}
 \end{lem}
 
@@ -286,7 +290,7 @@ If there is an impure edge in $[1^\emptyset,m]$, then there is an impure edge
 $a\lessdot b$ where $cl(m)=cl(b)$.
 \begin{proof}
 If $x\lessdot y$ is an impure edge in $[1^\emptyset,m]$, then let $b$ be a mesh
-pattern obtained by adding points to $y$ to get the classical pattern $b$. Pick
+pattern obtained by adding points to $y$ so $cl(b) = cl(m)$. Pick
 an occurrence of $x$ in $y$ and add the points to $x$ in the order induced by
 how they are added to $y$ and the occurrence, call this $a$. The points added
 will not have any shadings in the four boxes touching it, therefore no point
@@ -328,8 +332,7 @@ $p-x\ge m$.
 
 Note that containing an impure edge in $[m,p]$ does not necessarily imply there
 that $[m,p]$ is non-pure. For example, if $[m,p]$ contains only one edge and
-that edge is impure, then $[m,p]$ is still pure. So it is necessary that there
-is an impure edge and a pure edge in the interval. Although it is also possible
+that edge is impure, then $[m,p]$ is still pure. Although it is also possible
 to have an non-pure poset that only contains impure edges, if the difference
 between the ranks of the elements at ends of the edges varies.
 
@@ -340,7 +343,7 @@ If $[\cl(s),\cl(p)]$ is (dis)connected in $\mathcal{P}$ it does no imply $[s,p]$
 has the same property in $\mathcal{M}$. For example, the interval $[123,456123]$
 is disconnected in the classical permutation poset but in $\mathcal{M}$ the
 interval $[123^{(3,0),(3,1),(3,2)},456123^{(6,0),(6,1),(6,2)}]$, see
-\cref{fig:123}, is chain, so is connected. Furthermore, the interval
+\cref{fig:123}, is a chain, so is connected. Furthermore, the interval
 $[321,521643]$ is connected in $\mathcal{P}$ but $[321^{(1, 3)},521643^{(1, 5),
 (1, 6), (4, 6)}]$, see \cref{fig:321}, is disconnected in $\mathcal{M}$.
 
@@ -390,9 +393,9 @@ If $m$ is indecomposable and $(|m|,0),(0,|m|)\not\in\sh(m)$, then
 $[m,m\ominus m]$ is disconnected.
 \end{cor}
 
-A analogous result is used in the classical case in \cite{McSt13} to show that
+An analogous result is used in the classical case in \cite{McSt13} to show that
 almost all intervals of the classical permutation poset are not shellable. The
-proof of this follows form the Marcus-Tardos theorem, we have seen this result
+proof of this follows from the Marcus-Tardos theorem, we have seen this result
 does not apply in the mesh pattern case so we cannot prove a similar result
 using this technique.  A similar problem was studied for boxed mesh patterns in
 permutations in \cite{AKV13}, which is equivalent to boxed mesh patterns in
