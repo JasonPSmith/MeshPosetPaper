@@ -5,15 +5,28 @@
 \begin{document}
 	\maketitle
 
-%\section{Introduction}
-
 % TODO Mention that fully shaded patterns are maximal elements in the mesh pattern poset
 % Show mesh patterns have a unique decomposition using direct sums
 % Can the Mobius function be computed by the decomposition?
 % Define the direct sum
 
-\section{The Poset of Mesh Patterns}
+\section{Introduction}
+Mesh patterns are a generalisation of permutations and have been studied extensively in recent years.
+A natural definition of when one mesh patterns occurs in another mesh patterns was given in~\cite{TU17}.
+Therefore, we can also generalise the classical permutation poset to a poset of mesh patterns, where 
+$(\sigma,S)\le(\pi,P)$ if there is an occurrence of $(\sigma,S)$ in~$(\pi,P)$.
 
+To define when a mesh pattern occurs within another mesh pattern, first we need to
+recall when a mesh pattern $(\sigma,S)$ occurs in a permutation $\pi$. Given any 
+occurrence $\eta$ of $\sigma$ in $\pi$, in the classical permutation pattern sense, 
+then each box $(i,j)$ of $(\sigma,S)$ corresponds to an area $R_{\eta}(i,j)$ in the plot 
+of $\pi$. We say that $\eta$ is an occurrence of the mesh pattern $(\sigma,S)$ in the 
+permutation~$\pi$ if there is no point in any of the areas $R_{\eta}(i,j)$ for any shaded 
+box~$(i,j)\in S$. We define an occurrence of a mesh pattern $(\sigma,S)$ in another mesh 
+pattern $(\pi,P)$ as an occurrence~$\eta$ of~$(\sigma,S)$ in $\pi$ where if $(i,j)$ is shaded 
+in $(\sigma,S)$, then every box in $R_\eta(i,j)$ is shaded in $(\pi,P)$.
+
+\section{The Poset of Mesh Patterns}
 Mesh patterns were first introduced in \cite{Bra11} and a concept of mesh
 pattern containment in another mesh pattern was introduced in \cite{TU17}. A
 mesh pattern is of the form $p=(\cl(p),\sh(p))$, where $\cl(p)$ is a permutation
@@ -107,13 +120,27 @@ that contains no points.
 \caption{The interval $[1^\emptyset,123^{(0,3),(1,3),(2,3)}]$ of $\mathcal{M}$.}\label{fig:intEx}
 \end{figure}
 
+\subsection{Poset Topology}
+Define:
+\begin{itemize}
+\item M\"obius function
+\item Purity
+\item Shellability
+\item Quillen Fibre Lemma
+\end{itemize}
+
+Given any poset a natural question to ask is how does its M\"obius function behave?
+The M\"obius function on any interval $[\alpha,\beta]$ is defined in the following way:
+$\mu(a,a)=1$, for all $a$, $\mu(a,b)=0$ if $a\not\le b$, and $$\mu(a,b)=-\sum_{c\in[a,b)}\mu(a,c).$$
+We refer to $\mu(a,b)$ as the M\"obius function of $[a,b]$. See \cref{fig:1-123} for an example.
+
 \section{M\"obius Function}
-We begin with some simple results we can immediately deduce about this poset.
+In this section we present some preliminary results on the M\"obius function of the mesh pattern poset.
 First we consider the case that two mesh patterns have the same underlying
 permutation.
 \begin{lem}
 If $\cl(m)=\cl(p)$, then $[m,p]$ is isomorphic to the boolean lattice
-$B_{|\sh(p)|-|\sh(m)|}$ which implies $\mu(m,p)=(-1)^{|\sh(p)|-|\sh(m)|}$ and
+$B_{|\sh(p)|-|\sh(m)|}$, which implies $\mu(m,p)=(-1)^{|\sh(p)|-|\sh(m)|}$ and
 $[m,p]$ is shellable.
 \begin{proof}
 We cannot remove any points from $p$, we can only unshade boxes, and we can
@@ -128,15 +155,15 @@ $\epsilon^\emptyset$ and $\epsilon^{(0,0)}$, respectively.
 Consider a mesh pattern $p$, then:
 $$\mu(\epsilon^{A},p)=\begin{cases}
 1,&\mbox{ if }p=\epsilon^A \\
--1,&\mbox{ if }A=\emptyset\,\,\&\,\,\rk(p)=1\\
+-1,&\mbox{ if }A=\emptyset\,\,\&\,\,\cl(p)+\sh(p)=1\\
 0,&\mbox{ otherwise}
 \end{cases}$$
 \begin{proof}
-The cases $p=\epsilon^A$ and $A=\emptyset\,\,\&\,\,\rk(p)=1$ are trivial. The
-mesh pattern $\epsilon^{(0,0)}$ is not contained in any large mesh patterns, so
+The first two cases are trivial. The
+mesh pattern $\epsilon^{(0,0)}$ is not contained in any larger mesh patterns, so
 the M\"obius function is always $0$. If $\rk(p)>1$, then
 $(\epsilon^\emptyset,p)$ contains a unique minimal element $1^\emptyset$, so
-$\mu(\epsilon^\emptyset,p)$.
+$\mu(\epsilon^\emptyset,p)=0$.
 \end{proof}
 \end{lem}
 
@@ -188,8 +215,26 @@ non-initial letter is part of the occurrence, which implies the result.
 We can also see that the M\"obius function on $\mathcal{M}$ is not bounded by
 the classical poset, that is, it is not true that $\muM(m,p)\le
 \muP(\cl(m),\cl(p))$. A simple counterexample is the interval
-$[1^{(0,1)},123^{(0,2),(0,3),(1,2),(1,3)}]$, this has M\"obius number $1$,
-however $\muP(1,123)=0$.
+$[1^{(0,1)},123^{(0,2),(0,3),(1,2),(1,3)}]$, this has M\"obius function $1$,
+however $\muP(1,123)=0$, see \cref{fig:1-123}.
+
+\begin{figure}\centering
+\begin{tikzpicture}
+\def\s{0.35}
+\node (123) at (0,3){\textcolor{white}{1}\patt{\s}{3}{1,2,3}[0/2,0/3,1/2,1/3][][][][][4]\textcolor{red}{1}};
+\node (12a) at (-1,1.5){\textcolor{red}{-1}\patt{\s}{2}{1,2}[0/2,1/2][][][][][4]\textcolor{white}{-1}};
+\node (12b) at (1,1.5){\textcolor{white}{-1}\patt{\s}{2}{1,2}[0/1,0/2][][][][][4]\textcolor{red}{-1}};
+\node (1) at (0,0){\textcolor{white}{-1}\patt{\s}{1}{1}[0/1][][][][][4]\textcolor{red}{1}};
+\draw (1) -- (12a) -- (123) -- (12b) -- (1);
+\node (123) at (5,3){\textcolor{red}{0} $123$ \textcolor{white}{0}};
+\node (12) at (5,1.5){\textcolor{red}{-1} $12$ \textcolor{white}{-1}};
+\node (1) at (5,0){\textcolor{red}{1} $1$ \textcolor{white}{1}};
+\draw (1) -- (12) -- (123);
+\end{tikzpicture}
+\caption{The interval $[1^{(0,1)},123^{(0,2),(0,3),(1,2),(1,3)}]$
+(left) in $\mathcal{M}$ and $[1,123]$ (right) in $\mathcal{P}$, 
+with the M\"obius function in red.}\label{fig:1-123}
+\end{figure}
 
 If we consider intervals where the bottom mesh pattern has no shadings, then we
 get the following result:
@@ -197,15 +242,15 @@ get the following result:
 Consider the interval $[m,p]$ in $\mathcal{M}$. If $\sh(m)=\emptyset\not=\sh(p)$
 and there is no $s\in(m,p)$ with $\cl(s)=\cl(m)$, then $\mu(m,p)=0$.
 \begin{proof}
-Define a map $f(x)=\cl(x)^\emptyset$, for any $x\in(m,p)$. Let $A$
-order-preserving image $f((m,p))$. Note that $\mu(A)$ is contractible because it has a
+Define a map $f(x)=\cl(x)^\emptyset$, for any $x\in(m,p)$, and let $A:=f((m,p))$, then $A=(\cl(m),\cl(p)]$.
+So  $A$ is contractible, because it has the
 unique maximal element $\cl(p)^\emptyset$. Moreover, for any $y\in A$ $f^{-1}(A_{\ge y})$
 equals $[y,p)$ which is contractible. Therefore, $(m,p)$ is homotopically equivalent
-to $A$ using the Quillen Fiber Lemma, which implies $\mu(m,p)=0$. This is also called a retraction.
+to $A$ using the Quillen Fiber Lemma, which implies $\mu(m,p)=0$.
 \end{proof}
 \end{lem}
 
-We can combine Lemma~\ref{lem:mu0} with he following result to see that the
+We can combine Lemma~\ref{lem:mu0} with the following result to see that the
 M\"obius function is almost always zero on the interval $[1^\emptyset,p]$.
 
 \begin{lem}
@@ -241,7 +286,7 @@ P(n)\le\sum_{i=1}^{n}P(n,i)\le\sum_{i=1}^{n}\frac{2}{n2^i}
 $$
 
 We can repeat this calculation for the other three one shadings of $1$ so we get
-that $P(n)\le \frac{4}{n}\rightarrow 0$.
+that $P(n)\le \frac{8}{n}\rightarrow 0$.
 \end{proof}
 \end{lem}
 \begin{cor}
@@ -266,8 +311,23 @@ $n$ contains $m$ tends to $0$ as $n$ tends to infinity.
 \section{Purity}
 
 Interestingly the mesh pattern poset is not a pure poset, that is, not every
-maximal chain has the same length. We say an edge $m\lessdot p$ is \emph{impure}
-if $\rk(p)-\rk(m)>1$. Let $m-x$ be the mesh pattern obtained by deleting the
+maximal chain has the same length. First we consider the length of the maximal chain in
+any interval $[1^\emptyset,m]$, that is, the rank of $[1^\emptyset,m]$.
+\begin{lem}
+For any mesh pattern $m$, we have $\rk(1^\emptyset,m)=|\cl(m)|+|\sh(m)|$.
+\begin{proof}
+We can create a chain from $m$ to $1^\emptyset$ by deshading all boxes, in any order,
+and then deleting all but one point, in any order, this is a chain of length $|\cl(m)|+|\sh(m)|$.
+Moreover, to create a smaller element at least one shading or point must be removed, so we cannot create a chain of length greater than $|\cl(m)|+|\sh(m)|$.
+\end{proof}
+\end{lem}
+
+So we define the rank of a mesh pattern as $\rk(m)=|\cl(m)|+|\sh(m)|$ and we say an 
+edge $m\lessdot p$ is \emph{impure} if $\rk(p)-\rk(m)>1$, this is equivalent
+to the edge being between different ranked elements in any interval $[1^\emptyset,x]$, with $x\ge p$.
+We begin with a classification of impure edges.
+
+ Let $m-x$ be the mesh pattern obtained by deleting the
 point $x$ and let $m\setminus x$ be the occurrence of $m-x$ in $m$ that does not
 use the point $x$. We say that deleting a point $x$ \emph{merges shadings} if
 there is a shaded box in $m-x$ that corresponds to more than one shaded box in
@@ -279,7 +339,7 @@ $p$ use all shaded boxes of $p$ and are obtained by deleting a point that merges
 shading.
 \begin{proof}
 First we show the backwards direction. Because $m$ is obtained by deleting a
-point that merges shadings $m$ must have one less point and at least one less
+point that merges shadings, $m$ must have one less point and at least one less
 shading so $\rk(p)-\rk(m)\ge2$. So it suffices to show that there is no $z$ such
 that $m<z<p$. Suppose such a $z$ exists, then if $z$ is obtained by deshading a
 box in $p$ it can no longer contain $m$ because all occurrences of $m$ in $p$
@@ -306,12 +366,12 @@ $a\lessdot b$ where $cl(m)=cl(b)$.
 \begin{proof}
 If $x\lessdot y$ is an impure edge in $[1^\emptyset,m]$, then let $b$ be a mesh
 pattern obtained by adding points to $y$ so $cl(b) = cl(m)$. Pick
-an occurrence of $x$ in $y$ and add the points to $x$ in the order induced by
+an occurrence of $x$ in $y$ and add the points to $x$ in the positions induced by
 how they are added to $y$ and the occurrence, call this $a$. The points added
 will not have any shadings in the four boxes touching it, therefore no point
 touching a shading in $a$ can embed in a new point of $b$. Moreover, the set of
 embeddings of $a$ in $b$ is a subset of $x$ in $y$, after adding the new points
-to each. These two conditions imply that if every embedding of $x$ in $y$ uses
+to each. These two conditions imply that every embedding of $x$ in $y$ uses
 all the shadings of $y$, this is also true for every embedding of $a$ in $b$.
 Therefore, the result follows by Lemma~\ref{lem:impureEdge}.
 \end{proof}
@@ -324,10 +384,10 @@ there is no other occurrence of $m-p$ in $m$ with a subset of shadings of
 $m\setminus p$.
 \begin{proof}
 First we show the backwards direction. Let $x$  be the mesh pattern obtained by
-inserting $p$ back into $m^p$, and $\eta$ the corresponding embedding of $m^p$
+inserting $p$ back into $m-p$, and $\eta$ the corresponding embedding of $m-p$
 in $x$. Note that it is not always true that $x=m$ because some shaded shadings
-of $m$ are lost when deleting $p$. We claim that $m^p\lessdot x$ is an impure
-edge. This follows by Lemma~\ref{lem:impureEdge} because by $\eta$ uses all the
+of $m$ are lost when deleting $p$. We claim that $m-p\lessdot x$ is an impure
+edge. This follows by Lemma~\ref{lem:impureEdge} because $\eta$ uses all the
 shaded boxes in $x$ and there is no subshading occurrence.
 
 To see the other direction suppose there is an impure edge in $[\omega,m]$. By
@@ -348,7 +408,7 @@ $p-x\ge m$.
 Note that containing an impure edge in $[m,p]$ does not necessarily imply
 that $[m,p]$ is non-pure. For example, if $[m,p]$ contains only one edge and
 that edge is impure, then $[m,p]$ is still pure. Although it is also possible
-to have an pure poset that contains impure and pure edges, see \cref{fig:pureIm}.
+to have a pure poset that contains impure and pure edges, see \cref{fig:pureIm}.
 
 \begin{figure}\centering
 \begin{tikzpicture}
@@ -372,17 +432,17 @@ to have an pure poset that contains impure and pure edges, see \cref{fig:pureIm}
  \label{fig:pureIm}
 \end{figure}
 
-\section{Topology}
+\section{Topology}\label{sec:topology}
 The connectivity of the interval $[\cl(m),\cl(p)]$ in $\mathcal{P}$ does
 not necessarily imply the same property for $[m,p]$ in $\mathcal{M}$.
 For example, the interval $[123,456123]$ is disconnected in $\mathcal{P}$ but the
-interval between $a=123^{(3,0),(3,1),(3,2)}$ and $b=456123^{(6,0),(6,1),(6,2)}$, see
+interval $$[a,b]=[123^{(3,0),(3,1),(3,2)},456123^{(6,0),(6,1),(6,2)}],$$ see
 \cref{fig:123}, is a chain in $\mathcal{M}$, so is connected. Furthermore, the interval
-$[321,521643]$ is connected in $\mathcal{P}$ but the interval between $x=321^{(1, 3)}$
-and $y=521643^{(1, 5),(1, 6), (4, 6)}$, see \cref{fig:321}, is disconnected in~$\mathcal{M}$.
+$[321,521643]$ is connected in $\mathcal{P}$ but the interval 
+$$[x,y]=[321^{(1, 3)},521643^{(1, 5),(1, 6), (4, 6)}],$$ see \cref{fig:321}, is disconnected in~$\mathcal{M}$.
 This also implies that if $[\cl(m),\cl(p)]$ is (non-)shellable in $\mathcal{P}$
 then it is not true that $[m,p]$ has the same property in $\mathcal{M}$. For example,
-$[123,456123]$ is not shellable but$[a,b]$ is shellable, and
+$[123,456123]$ is not shellable but $[a,b]$ is shellable, and
 $[321,521643]$ is shellable but $[x,y]$
 is not shellable.
 
@@ -400,8 +460,8 @@ is not shellable.
 \end{figure}
 
 We can define a direct sum operation on mesh patterns, where given two mesh
-patterns $s$ and $t$, where the top right corner of $s$ and bottom left corner
-of $t$ are not shaded, the direct sum $s\oplus t$ has classical pattern
+patterns $s$ and $t$, the top right corner of $s$ and bottom left corner
+of $t$ are not shaded. The direct sum $s\oplus t$ has classical pattern
 $\cl(s)\oplus\cl(t)$ and the shadings are given by placing $t$ north east of $s$
 and shading any borders so they extend to the edge. We can similarly define the
 skew-sum.
