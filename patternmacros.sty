@@ -6,6 +6,12 @@
     \foreach \x/\y in {#1}
     \fill[pattern color = black!75, pattern=north east lines] (\x,\y) rectangle +(1,1);
 }
+\newcommand{\shadetheboxesX}[1]{
+    \foreach \x/\y in {#1}{
+	\draw[thick] (\x,\y) -- (\x+1,\y+1);
+	\draw[thick] (\x,\y+1) -- (\x+1,\y);
+    }
+}
 \newcommand{\shadetheboxesCol}[2]{
     \foreach \x/\y in {#1}
     {
@@ -145,6 +151,7 @@
 % #7: Containment decorations
 % #8: Labels
 % #9: Size of the points
+% #9:shift up
 \newcommandx{\patt}[9][4={},5={},6={},7={},8={},9=4]
 {
 	\scalebox{#1}
@@ -160,6 +167,21 @@
 			\drawclpattern{#3}{#9}
 			\drawlabels{#8}
 		\end{tikzpicture}
+	}
+}
+%creates a small mesh pattern for puttting inline text
+\newcommandx{\pattin}[3]
+{
+	\raisebox{3pt}{
+	\scalebox{0.1}
+	{
+		\begin{tikzpicture}[baseline=(current bounding box.center)]
+			\useasboundingbox (0.0,-.3) rectangle (#1+1,#1+1.3);
+			\shadetheboxesX{#3}
+			\draw (0.01,0.01) grid (#1+1-0.01,#1+1-0.01);
+			\drawclpattern{#2}{4}
+		\end{tikzpicture}
+	}
 	}
 }
 

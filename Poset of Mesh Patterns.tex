@@ -2,6 +2,8 @@
 \usepackage{preamble}
 \title{The Poset of Mesh Patterns}
 
+\def\sc{0.1}
+
 \begin{document}
 	\maketitle
 
@@ -16,60 +18,64 @@ A natural definition of when one mesh patterns occurs in another mesh patterns w
 Therefore, we can also generalise the classical permutation poset to a poset of mesh patterns, where 
 $(\sigma,S)\le(\pi,P)$ if there is an occurrence of $(\sigma,S)$ in~$(\pi,P)$.
 
-To define when a mesh pattern occurs within another mesh pattern, first we need to
-recall when a mesh pattern $(\sigma,S)$ occurs in a permutation $\pi$. Given any 
-occurrence $\eta$ of $\sigma$ in $\pi$, in the classical permutation pattern sense, 
-then each box $(i,j)$ of $(\sigma,S)$ corresponds to an area $R_{\eta}(i,j)$ in the plot 
-of $\pi$. We say that $\eta$ is an occurrence of the mesh pattern $(\sigma,S)$ in the 
-permutation~$\pi$ if there is no point in any of the areas $R_{\eta}(i,j)$ for any shaded 
-box~$(i,j)\in S$. We define an occurrence of a mesh pattern $(\sigma,S)$ in another mesh 
-pattern $(\pi,P)$ as an occurrence~$\eta$ of~$(\sigma,S)$ in $\pi$ where if $(i,j)$ is shaded 
-in $(\sigma,S)$, then every box in $R_\eta(i,j)$ is shaded in $(\pi,P)$.
+The poset of permutations has recieved a lot of attention in recent years, but due to its
+complicated structure a full understanding of the poset has proven elusive,
+see \cite{Smith14,Smith15}. The poset of mesh patterns, which we define
+here, contains the poset of permutations as an induced subposet. By studying this poset we 
+hope to see if the two posets posses a similar structure, so that a understanding of one 
+may lead to results on the other.
 
-\section{The Poset of Mesh Patterns}
+There are many open questions relating to mesh patterns, for example two mesh patterns
+are \emph{coincident} if their avoidance class is exactly the same. A full classification
+of such coincidences has proven difficult to obtain, see \cite{}. By looking at which
+mesh patterns are contained within each other, how the structure of the poset this induces,
+we hope that this may lead to a better understanding of mesh patterns and their properties,
+such as coincidences.
+
+In \cref{sec:PosMP} we introduce the poset of mesh patterns and related definitions,
+including a brief overview of poset topology. In \cref{sec:MF} we prove some results
+on the M\"obius function of the poset of mesh patterns. In \cref{sec:purity} we give
+a characterisation of the non-pure intervals of the mesh pattern poset.
+In \cref{sec:topology} we give some results on the topology of the mesh pattern poset
+
+
+
+\section{The Poset of Mesh Patterns}\label{sec:PosMP}
 Mesh patterns were first introduced in \cite{Bra11} and a concept of mesh
-pattern containment in another mesh pattern was introduced in \cite{TU17}. A
-mesh pattern is of the form $p=(\cl(p),\sh(p))$, where $\cl(p)$ is a permutation
-and $\sh(p)$ is a set of coordinates corresponding to the boxes that are shaded,
-where $(i,j)$ denotes the box $[i,i+1]\times[j,j+1]$. We
-also denote $p$ by $\cl(p)^{\sh(p)}$, for example $132^\emptyset$ is the mesh
-pattern on $132$ with no shaded boxes.  For example the mesh pattern
-$(132,\{(0,0),(0,1),(2,2)\})$, or equivalently $132^{(0,0),(0,1),(2,2)}$, has the form:
-
+pattern containment in another mesh pattern was introduced in \cite{TU17}. 
+A mesh pattern is a generalisation of a permutation. Given a permutation
+$\pi=\pi_1\pi_2\ldots\pi_n$ we can plot $\pi$ on a $n\times n$ grid,
+where we place a dot at coordinates $(i,\pi_i)$, for all $1\le i\le n$.
+A mesh pattern is then obtained by shading boxes of this grid, so a mesh
+pattern takes the from $p=(\cl(p),\sh(p))$, where $\cl(p)$ is a permutation
+and $\sh(p)$ is a set of coordinates recording the shaded boxes, which are indexed
+by their south west corner. For ease of notation we sometimes denote the mesh
+pattern $\cl(p)^{\sh(p)}$. For example the mesh pattern $(132,\{(0,0),(0,1),(2,2)\})$,
+or equivalently $132^{(0,0),(0,1),(2,2)}$, has the form:
 \begin{center}
 \patt{0.5}{3}{1,3,2}[0/1,0/0,2/2][][][][][4]
 \end{center}
 
-We let $|\cl(p)|$ represent the length of $\cl(p)$ and $|\sh(p)|$ the size of
-$\sh(p)$, and define the length of $p$ as $|\cl(p)|$. We define the \emph{rank}
-of $p$ as $|\pi|+|P|$, that is, the number of points plus the number of shaded
-boxes. Let $G(p)$ be the set of coordinates of
-the points of $p$.
+To define when a mesh pattern occurs within another mesh pattern, first we need to
+introduce two other well known definitions of occurrence. A permutation $\sigma$
+occurs in a permutation $\pi$ if there is a subsequence of $\pi$ whose letters
+appear in the same relative order of size as the letters of $\sigma$
 
-Given two classical permutations $\sigma$ and $\pi$, an occurrence of $\sigma$
-in $\pi$ is a map $\alpha:[|\sigma|]\rightarrow[|\pi|]$ such that
-$\alpha(1)\alpha(2)\ldots\alpha(|\sigma|)$ has the same relative order of size
-as $\sigma$. Given any letter $b=\sigma_i$ let
-$\hat{\alpha}(b)=\pi_{\alpha(i)}$, so $\hat{\alpha}$ maps the value of a letter
-in $\sigma$ to its value in $\pi$ under the map $\alpha$.
+Consider a mesh pattern $(\sigma,S)$ and an occurrence $\eta$ of $\sigma$ in $\pi$, in the
+classical permutation pattern sense. Each box $(i,j)$ of $(\sigma,S)$ corresponds to an
+area $R_{\eta}(i,j)$ in the plot of $\pi$, which is the area bounded by the points in $\pi$
+which in $\eta$ correspond to the letters $\sigma_i,\sigma_{i+1},j,j+1$ of $\sigma$.
+We say that $\eta$ is an occurrence of the mesh pattern $(\sigma,S)$ in the permutation~$\pi$
+if there is no point in any of the areas $R_{\eta}(i,j)$ for any shaded box~$(i,j)\in S$.
 
-Using the notion of pattern occurrence we can define a partial order on
-permutations where $\sigma\leP\pi$ if there is an occurrence of $\sigma$ in
-$\pi$. Let $\mathcal{P}$ be the poset of all permutations with the partial order
-$\leP$, we call this the \emph{classical permutation poset}.
+Using these definitions of occurrences we can define when an occurrence of one mesh patterns
+appears in another.  An example of which is given in \cref{fig:occEx}. 
 
-We can extend this definition to define an occurrence in a mesh pattern.
-Consider a pair of mesh patterns $m$ and $p$ and an occurrence $\alpha$ of
-$\cl(m)$ in $\cl(p)$. Define
-$R^\alpha_{i,j}=[\alpha(i),\alpha(i+1)]\times[\hat{\alpha}(j),\hat{\alpha}(j+1)]$,
-this is the area in $p$ that corresponds to the box $(i,j)$ in $m$ according to
-$\alpha$
-
-An \emph{occurrence} of $m$ in $p$ is an occurrence $\alpha$ of $\cl(m)$ in
-$\cl(p)$ satisfying $\bigcup_{(i,j)\in \sh(m)}R^\alpha_{i,j}\subseteq\sh(p)$ and
-$G(p)\cap\bigcup_{(i,j)\in \sh(m)}R^\alpha_{i,j}=\emptyset$. This is equivalent
-to saying every shaded box in $m$ corresponds to a fully shaded area in $p$
-that contains no points.
+\begin{defn}[\cite{TU17}]\label{defn:meshOcc}
+An occurrence of a mesh pattern $(\sigma,S)$ in another mesh 
+pattern $(\pi,P)$ is an occurrence~$\eta$ of~$(\sigma,S)$ in $\pi$, where for any $(i,j)\in S$
+every box in $R_\eta(i,j)$ is shaded in $(\pi,P)$.
+\end{defn}
 
 \begin{figure}\centering
 \begin{subfigure}[b]{0.3\textwidth}
@@ -84,6 +90,13 @@ that contains no points.
 \caption{A pair of mesh patterns (a) and (b), with (c) showing an occurrence of (a) in~(b).
  Also note (b) does not contain $12^{(0,0),(1,1),(2,2)}$.}\label{fig:occEx}
 \end{figure}
+
+The classical permutation poset $\mathcal{P}$ is defined as the poset of all permutation,
+with $\sigma\le_\mathcal{P}\pi$ if and only if $\sigma$ occurs in $\pi$. Using \cref{defn:meshOcc}
+we can similarly define the poset of mesh patterns $\mathcal{M}$ as the poset of all mesh patterns,
+with $m\le_\mathcal{M} p$ if $m$ occurs in $p$. Note we drop the subscripts from $\le$ when it is clear
+which partial order is being considered. An \emph{interval} $[\alpha,\beta]$ of a poset is defined as subposet induced by the set
+$\{\kappa\,|\,\alpha\le\kappa\le\beta\}$. See \cref{fig:intEx} for an example of an interval of $\mathcal{M}$.
 
 \begin{figure}\centering
 \begin{tikzpicture}
@@ -120,6 +133,13 @@ that contains no points.
 \caption{The interval $[1^\emptyset,123^{(0,3),(1,3),(2,3)}]$ of $\mathcal{M}$.}\label{fig:intEx}
 \end{figure}
 
+We let $|\cl(p)|$ represent the length of $\cl(p)$
+and $|\sh(p)|$ the size of $\sh(p)$, and define the \emph{length} of $p$ as $|\cl(p)|$.
+We define the \emph{rank} of $p$ as $|\cl(p)|+|\sh(p)|$, that is, the number of points plus the
+number of shaded boxes.
+
+
+
 \subsection{Poset Topology}
 Define:
 \begin{itemize}
@@ -127,14 +147,76 @@ Define:
 \item Purity
 \item Shellability
 \item Quillen Fibre Lemma
-\end{itemize}
+\end{itemize}%
 
-Given any poset a natural question to ask is how does its M\"obius function behave?
-The M\"obius function on any interval $[\alpha,\beta]$ is defined in the following way:
+The \emph{M\"obius function} on an interval $[\alpha,\beta]$ of a poset is defined by:
 $\mu(a,a)=1$, for all $a$, $\mu(a,b)=0$ if $a\not\le b$, and $$\mu(a,b)=-\sum_{c\in[a,b)}\mu(a,c).$$
 We refer to $\mu(a,b)$ as the M\"obius function of $[a,b]$. See \cref{fig:1-123} for an example.
 
-\section{M\"obius Function}
+In a poset we say that $\alpha$ \emph{covers} $\beta$, denoted $\alpha\gtrdot\beta$, if $\alpha>\beta$
+and there is no $\kappa$ such that $\alpha>\kappa>\beta$. A \emph{chain} of length $k$ in a poset is 
+a totally ordered subset $c_1<c_2<\cdots<c_{k+1}$, and the chain is maximal if $c_i\lessdot c_{i+1}$,
+for all $1\le i \le k$. A poset is \emph{pure} (also known as \emph{ranked} or \emph{graded}) if all
+maximal chains have the same length. The \emph{dimension} of a poset $P$, denoted $\dim P$, is the 
+length of the longest maximal chain. For example, the interval in \cref{fig:intEx} is nonpure because
+there is one maximal chain of length $3$ ($\pattin{1}{1}{}\lessdot\pattin{1}{1}{0/1}\lessdot
+\pattin{2}{1,2}{0/2,1/2}\lessdot\pattin{3}{1,2,3}{0/3,1/3,2/3}$) and all other maximal chains have 
+length $5$, so the dimension is $5$.
+
+The \emph{interior} of an interval $[\alpha,\beta]$ is obtained by removing $\alpha$ and $\beta$, 
+and is denoted $(\alpha,\beta)$. The \emph{order complex} of an interval $[\alpha,\beta]$, denoted 
+$\Delta(\alpha,\beta)$ is the simplicial complex whose faces are the chains of $(\alpha,\beta)$. 
+When we refer to the topology of an interval we mean the poset of the order complex of the interval. 
+We briefly introduce some relevant poset topology definitions, but refer the reader to \cite{Wac07} 
+for a comprehensive overview of the topic.
+
+The \empg{reduced Euler characteristic} $\tilde{\chi}$ of a simplicial complex is topological invariant 
+which counts the number "holes" in the complex. The Philip Hall Theorem implies that 
+$\mu(\sigma,\pi)=\tilde{\chi}(\Delta(\sigma,\pi)$. Therefore, by studying the topology of the order 
+complex of a poset we can derive results on the M\"obius function.
+
+A poset is \emph{shellable} if we can order the maximal chains of the interior $F_1,\ldots,F_t$ 
+such that the induced subposet $\left(\cup_{i=1}^{k-1}F_i\right)\cap F_k$ is pure and 
+$(\dim F_k)$-dimensional, for all $k=2,\ldots,t$. Being shellable implies many nice properties 
+on the topology, such as having the homotopy type of a wedge of spheres.
+
+An interval is \emph{disconnected} if the interior can be split into two disjoint sets, called 
+\emph{components}, which are pairwise incomparable, that is, $a\not\le b$ and $b\not\le a$ if 
+they are in different sets. We call a component non-trivial if it contained more than one point 
+and we say an interval is strongly disconnected if at least two components are nontrivial.
+
+We can use disconnectivity as a test for shellability using the following results.
+
+\begin{lem}
+If an interval is strongly disconnected, then it is not shellable.
+\begin{proof}
+For any ordering of the maximal chains, the intersection of the first chain of the second non-trivial 
+component with the preceding chains is the empty set, which has dimension $-1$, and as the component is 
+non-trivial the chain must have dimension at least $1$. Therefore, the shellable conditions cannot be 
+satisfied by any ordering.
+\end{proof}
+\end{lem}
+
+\begin{lem}\cite[Corollary 3.1.9]{Wac07}
+Every subinterval of a shellable interval is shellable.
+\end{lem}
+
+\begin{cor}
+If an interval contains a strongly disconnected interval, then it is not shellable.
+\end{cor}
+
+Finally, we present a useful result known as the Quillen fiber lemma. Two simplicial complexes are homotopy equivalent  if one can be obtained from the other by deforming the surfaces, but not breaking or creating any new ``holes", so their Euler characteristic is the same. Therefore, if two posets are homotopy equivalent their M\"obius functions are equal.
+\begin{prop}\label{thm:Quil}(Quillen Fiber Lemma)
+Let $\phi:P\rightarrow Q$ be an order-preserving map between posets such that for any
+ $x\in Q$ the complex $\Delta(\phi^{-1}(Q_{\ge x}))$ is contractible.
+  Then $P$ and $Q$ are homotopy equivalent.
+\end{prop}
+
+In the subsequent sections we give some results on the M\"obius function and topology of the poset of mesh patterns.
+
+
+
+\section{M\"obius Function}\label{sec:MF}
 In this section we present some preliminary results on the M\"obius function of the mesh pattern poset.
 First we consider the case that two mesh patterns have the same underlying
 permutation.
@@ -308,7 +390,7 @@ $n$ contains $m$ tends to $0$ as $n$ tends to infinity.
 
 
 
-\section{Purity}
+\section{Purity}\label{sec:purity}
 
 Interestingly the mesh pattern poset is not a pure poset, that is, not every
 maximal chain has the same length. First we consider the length of the maximal chain in
@@ -505,6 +587,11 @@ fully shaded mesh patterns. So we leave it as an open question:
 What proportion of intervals of $\mathcal{M}$ are shellable?
 \end{que}
 
+\section{Open Questions}
+
+\begin{conj}
+Every interval of $\mathcal{M}$ is unimodal.
+\end{conj}
 
 \bibliographystyle{alpha}
 \bibliography{bibfile}
