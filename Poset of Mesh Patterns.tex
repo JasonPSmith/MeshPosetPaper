@@ -143,7 +143,7 @@ patterns in which all boxes are shaded.
 \end{lem}
 
 \begin{proof}
-This follows from the easily proven fact that a fully shaded mesh patterns only
+This follows from the easily proven fact that a fully shaded mesh pattern only
 occurs in itself, and no other mesh patterns.
 \end{proof}
 
@@ -235,16 +235,17 @@ In this section we present some results on the M\"obius function of the mesh pat
 We begin with some simple results: on mesh patterns with the same underlying permutations;
 the mesh patterns with no points $\epsilon^\emptyset$ and $\epsilon^{(0,0)}$;
 and mesh patterns with no shaded boxes.
-Throughout, the remainder of the paper we assume that $m$ and $p$ are
+Throughout the remainder of the paper we assume that $m$ and $p$ are
 mesh patterns.
 
 \begin{lem}
-For any sets $A\subseteq B$ the interval $[s^A,s^B]$ is isomorphic to the boolean
+Let $s$ be a permutation. For any sets $A\subseteq B$ the interval $[s^A,s^B]$ is isomorphic to the boolean
  lattice~$B_{|B|-|A|}$. Therefore, $\mu(s^A,s^B)=(-1)^{|B|-|A|}$ and
 $[s^A,s^B]$ is shellable.
 \begin{proof}
-We cannot remove any points from $s$, but we can
-unshade any boxes from $B\setminus A$ in any order.
+For any mesh pattern $p$ in the interval we have $\cl{p} = s$. Since
+any subset $C$ of $B \setminus A$ will produce a mesh pattern $s^C$
+in the interval, the result follows.
 \end{proof}
 \end{lem}
 
@@ -305,11 +306,11 @@ First note that every mesh pattern in $I=[21^{(0,0),(1,0)},m]$ is also in $M^1$.
 We define a map $f$ from $M^1$ to binary words in the following way. Let $b(m)$ be the
 set of letters that appear before $1$ in $m\in M^1$. Set $f(m)$ as the word where
 the $i$th letter is $0$ if it is in $b(m)$ and $1$ otherwise. The inverse of this map
-is obtained by taking a binary word $w$ put the positions that are $0$'s in increasing order
-then the positions that are $1$ in increasing order, and shade everything southwest of $1$. 
+is obtained by the following procedure: 1) take a binary word $w$ and put the positions that are $0$'s in increasing order; 2)
+then the positions that are $1$ in increasing order; 3) and shade everything southwest of $1$. 
 So $f$ is a bijection.
 
-The map $f$ is a bijection from $\mathcal{M}$ to $\mathcal{W}$ and it is straightforward
+It is straightforward
 to check that $f$ is order preserving. Therefore,
 the interval $[21^{(0,0),(1,0)},m]$ is isomorphic to $[10,f(m)]$ in $\mathcal{W}$.
 It was shown in
@@ -386,7 +387,7 @@ As $n$ tends to infinity the proportion of permutations of length $n$ that conta
 $\{1^{(0,0)},1^{(1,0)},1^{(0,1)},1^{(1,1)}\}$ approaches $0$.
 \begin{proof}
 Let $P(n,i)$ be the probability that the letter $i$ is an occurrence of
-$1^{(0,0)}$ in a length $n$ mesh pattern. And let $P(n)$ be the probability
+$1^{(0,0)}$ in a length $n$ mesh pattern, and let $P(n)$ be the probability
 that a length $n$ mesh pattern contains $1^{(0,0)}$.
 
 The probability that $i$ is an occurrence of $1^{(0,0)}$ is given by selecting
