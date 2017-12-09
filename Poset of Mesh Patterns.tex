@@ -383,19 +383,20 @@ We can combine Lemma~\ref{lem:mu0} with the following result to see that the
 M\"obius function is almost always zero on the interval $[1^\emptyset,p]$.
 
 \begin{lem}
-As $n$ tends to infinity the proportion of permutations of length $n$ that contain any of
+As $n$ tends to infinity the proportion of mesh patterns of length $n$ that contain any of
 $\{1^{(0,0)},1^{(1,0)},1^{(0,1)},1^{(1,1)}\}$ approaches $0$.
 \begin{proof}
 Let $P(n,i)$ be the probability that the letter $i$ is an occurrence of
 $1^{(0,0)}$ in a length $n$ mesh pattern, and let $P(n)$ be the probability
 that a length $n$ mesh pattern contains $1^{(0,0)}$.
 
-The probability that $i$ is an occurrence of $1^{(0,0)}$ is given by selecting
-the location $k$ of $i$, each has probability $\frac{1}{n}$, and then we require
-that all boxes south west of $i$ are filled, of which there are $2^{ik}$. Note
-that this over estimates the probability, because it is possible that there is a
+The probability that $i$ is an occurrence of $1^{(0,0)}$ can be bounded
+above by first considering the location $k$ of $i$, each having probability
+$\frac{1}{n}$, and then requiring
+that all boxes south west of $i$ are filled, of which there are $ik$. This
+provides an upper bound, because it is possible that there is a
 point south west of $i$, which would imply $i$ is not an occurrence of
-$1^{(0,0)}$, however this argument still counts them. We can formulate this as:
+$1^{(0,0)}$. We can formulate this as:
 \begin{align*}
 P(n,i)&\le\sum_{k=1}^{n+1-i}\frac{1}{n}\left(\frac{1}{2^i}\right)^k
 =\frac{1}{n}\left(\frac{2^{-i(n+2-i)}}{2^{-i}-1}-1\right)
@@ -404,7 +405,7 @@ P(n,i)&\le\sum_{k=1}^{n+1-i}\frac{1}{n}\left(\frac{1}{2^i}\right)^k
 \end{align*}
 
 To compute the probability that a length $n$ mesh pattern contains $1^{(0,0)}$ we
-can sum the over all the letters $i$.
+can sum over all the letters $i$.
 Note again this is an over estimate because if a mesh pattern contains multiple
 occurrences of $1^{(0,0)}$ it counts that mesh pattern more than once.
 
@@ -415,10 +416,11 @@ P(n)\le\sum_{i=1}^{n}P(n,i)\le\sum_{i=1}^{n}\frac{2}{n2^i}
 $$
 
 Repeating this calculation for the other three shadings of $1$ implies that
-the probability of containing any of the forbidden mesh pattern is bounded
+the probability of containing any of the forbidden mesh patterns is bounded
 by $\frac{8}{n}\rightarrow 0$.
 \end{proof}
 \end{lem}
+
 \begin{cor}
 As $n$ tends to infinity the proportion of mesh patterns $p$ of length n such
 that $\mu(1^\emptyset,p)=0$ approaches $1$.
@@ -430,8 +432,9 @@ probability a permutation of length $n$ contains $\sigma$ tends to $1$ as $n$
 tends to infinity, this follows from the Marcus-Tardos Theorem \cite{MT04}. By
 the above result we can see the same is not true in the mesh pattern case. In
 fact we conjecture the opposite is true:
+
 \begin{conj}
-Given a mesh pattern $m$, the probability that a random mesh pattern of length
+Given a mesh pattern $m$, with at least one shaded box, the probability that a random mesh pattern of length
 $n$ contains $m$ tends to $0$ as $n$ tends to infinity.
 \end{conj}
 
@@ -519,8 +522,7 @@ by deleting the point which corresponds to $i$ in $\eta$.
 The mesh pattern $b$ is constructed from $y$ by adding a collection of points.
 None of these added points can be touching a shaded box in $b$, as they must be added to empty
 boxes of~$y$. Moreover, the set of occurrences of $a$ in $b$ correspond to the set
-of occurrences of $x$ in $y$, after adding the new points. This implies that if the
-as the occurrences of $x$ in $y$ satisfy the conditions of \cref{lem:impureEdge}, the
+of occurrences of $x$ in $y$, after adding the new points. This implies that if the occurrences of $x$ in $y$ satisfy the conditions of \cref{lem:impureEdge}, the
 occurrences of $a$ in $b$ also satisfy these conditions. So $a\lessdot b$ is an
 impure edge by \cref{lem:impureEdge}.
 \end{proof}
@@ -638,7 +640,7 @@ an occurrence of $s$ and the final $|\cl{t}|$ letters are an occurrence of $t$.
 A permutation is said to be indecomposable if it cannot be written as the direct
 sum of smaller permutation. We can generalise this to mesh patterns.
 \begin{defn}
-A mesh pattern $m$ is \emph{indecomposable} (resp. \emph{skew-indecomposable}) if it
+A mesh pattern $m$ is \emph{indecomposable} (resp.~\emph{skew-indecomposable}) if it
 cannot be written $m=a\oplus b$ (resp. $m=a\ominus b$), where neither $a$ or $b$ is $m$.
 \end{defn}
 \begin{rem}
