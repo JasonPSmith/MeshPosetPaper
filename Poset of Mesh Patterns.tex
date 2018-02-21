@@ -21,7 +21,7 @@
 Mesh patterns were first introduced by Br\"and\'en and Claesson in \cite{Bra11} as a generalisation
 of permutation patterns, and have been studied extensively in recent years, see e.g.,~\cite{CTU15,JKR15}.
 A mesh pattern consist of a pair $(\pi,P)$, where $\pi$ is a permutation and $P$ is a set of coordinates
-in an $n\times n$ grid. For example, $(312,\{(0,0),(1,2)\})$ is a mesh
+in a square grid. For example, $(312,\{(0,0),(1,2)\})$ is a mesh
 pattern, which we depict by
 \begin{center}
 \patt{0.5}{3}{3,1,2}[0/0,1/2][][][][][4].
@@ -32,7 +32,7 @@ which we present in \cref{sec:PosMP}.
 This allows us to generalise the classical permutation poset to a poset of mesh patterns, where
 $(\sigma,S)\le(\pi,P)$ if there is an occurrence of $(\sigma,S)$ in~$(\pi,P)$. The permutation poset
 has received a lot of attention in recent years, but due to its
-complicated structure a full understanding of the poset has proven elusive,
+complicated structure a full understanding of it has proven elusive,
 see \cite{McSt13,Smith15}. The poset of mesh patterns, which we define
 here, contains the poset of permutations as an induced subposet. Therefore, investigating
 the poset of mesh patterns may lead to a better understanding of the poset of permutations. Moreover, 
@@ -40,9 +40,9 @@ studying this poset may help to answer some of the open questions on mesh patter
 
 In \cref{sec:PosMP} we introduce the poset of mesh patterns and related definitions,
 including a brief overview of poset topology. In \cref{sec:MF} we prove some results
-on the M\"obius function of the poset of mesh patterns. In \cref{sec:purity} we give
-a characterisation of the non-pure (or non-ranked) intervals of the mesh pattern poset.
-In \cref{sec:topology} we give some results on the topology of the mesh pattern poset.
+on the M\"obius function of this poset. In \cref{sec:purity} we give
+a characterisation of the non-pure (or non-ranked) intervals of the poset.
+In \cref{sec:topology} we give some results on the topology of the poset.
 
 
 
@@ -50,7 +50,7 @@ In \cref{sec:topology} we give some results on the topology of the mesh pattern 
 To define a mesh pattern we begin with a permutation
 $\pi=\pi_1\pi_2\ldots\pi_n$. We can plot $\pi$ on an $n\times n$ grid,
 where we place a dot at coordinates $(i,\pi_i)$, for all $1\le i\le n$.
-A mesh pattern is then obtained by shading boxes of this grid, so a mesh
+A \emph{mesh pattern} is then obtained by shading some of the boxes of this grid, so a mesh
 pattern takes the form $p=(\cl{p},\sh{p})$, where $\cl{p}$ is a permutation
 and $\sh{p}$ is a set of coordinates recording the shaded boxes, which are indexed
 by their south west corner. For ease of notation we sometimes denote the mesh
@@ -62,21 +62,22 @@ or equivalently $132^{(0,0),(0,1),(2,2)}$, has the form:
 \patt{0.5}{3}{1,3,2}[0/1,0/0,2/2][][][][][4]
 \end{center}
 
-To define when a mesh pattern occurs within another mesh pattern, first we need to
+To define when a mesh pattern occurs within another mesh pattern, we first need to
 recall two other well-known definitions of occurrence. A permutation $\sigma$
 \emph{occurs} in a permutation $\pi$ if there is a subsequence, $\eta$, of $\pi$ whose letters
 appear in the same relative order of size as the letters of $\sigma$. The subsequence
-$\eta$ is called an \emph{occurrence} of $\sigma$ in $\pi$.
+$\eta$ is called an \emph{occurrence} of $\sigma$ in $\pi$. If no such occurrence exists
+we say that $\pi$ \emph{avoids} $\sigma$.
 
 Consider a mesh pattern $(\sigma,S)$ and an occurrence $\eta$ of $\sigma$ in $\pi$, in the
-classical permutation pattern sense. Each box $(i,j)$ of $(\sigma,S)$ corresponds to an
+classical permutation pattern sense. Each box $(i,j)$ of $S$ corresponds to an
 area $R_{\eta}(i,j)$ in the plot of $\pi$, which is the rectangle whose corners are the points in $\pi$
 which in $\eta$ correspond to the letters $\sigma_i,\sigma_{i+1},j,j+1$ of $\sigma$.
 A point is contained in $R_\eta(i,j)$ if it is in the interior of $R_\eta(i,j)$, that is, not on the boundary.
 For example, in \cref{fig:occEx} where $\eta$ is the occurence in red, the area
 of $R_\eta(0,0)$ contains the boxes $\{(0,0),(1,0),(0,1),(1,1)\}$, and it contains exactly one point.
 We say that $\eta$ is an occurrence of the mesh pattern $(\sigma,S)$ in the permutation~$\pi$
-if there is no point in $R_{\eta}(i,j)$ for all shaded boxes~$(i,j)\in S$.
+if there is no point in $R_{\eta}(i,j)$, for all shaded boxes~$(i,j)\in S$.
 
 Using these definitions of occurrences we can recall a concept of mesh
 pattern containment in another mesh pattern introduced in \cite{TU17}.
@@ -169,7 +170,7 @@ See \cref{fig:1-123} for an example. The M\"obius function of a poset $P$ is giv
 
 In a poset we say that $\alpha$ \emph{covers} $\beta$, denoted $\alpha\gtrdot\beta$, if $\alpha>\beta$
 and there is no $\kappa$ such that $\alpha>\kappa>\beta$. A \emph{chain} of length $k$ in a poset is
-a totally ordered subset $c_1<c_2<\cdots<c_{k+1}$, and the chain is maximal if $c_i\lessdot c_{i+1}$,
+a totally ordered subset $c_1<c_2<\cdots<c_{k+1}$, and the chain is \emph{maximal} if $c_i\lessdot c_{i+1}$,
 for all $1\le i \le k$. A poset is \emph{pure} (also known as \emph{ranked}) if all
 maximal chains have the same length. The \emph{dimension} of a poset $P$, denoted $\dim P$, is the
 length of the longest maximal chain. For example, the interval in \cref{fig:intEx} is nonpure because
@@ -180,7 +181,7 @@ and all other maximal chains have length $5$, so the interval has dimension is $
 The \emph{interior} of an interval $[\alpha,\beta]$ is obtained by removing $\alpha$ and $\beta$,
 and is denoted $(\alpha,\beta)$. The \emph{order complex} of an interval $[\alpha,\beta]$, denoted
 $\Delta(\alpha,\beta)$, is the simplicial complex whose faces are the chains of $(\alpha,\beta)$.
-When we refer to the topology of an interval we mean the topology of the order complex of the interval.
+When we refer to the \emph{topology} of an interval we mean the topology of the order complex of the interval.
 
 A simplicial complex is \emph{shellable} if we can order the maximal faces $F_1,\ldots,F_t$
 such that the subcomplex $\left(\cup_{i=1}^{k-1}F_i\right)\cap F_k$ is pure and
@@ -219,7 +220,7 @@ we obtain the following:
 An interval which contains a strongly disconnected subinterval is not shellable.
 \end{cor}
 
-Finally, we present a useful result known as the Quillen fiber lemma~\cite{Quillen78}. Two simplicial
+Finally, we present a useful result known as the Quillen Fiber Lemma~\cite{Quillen78}. Two simplicial
 complexes are homotopy equivalent  if one can be obtained by deforming the other but
 not breaking or creating any new ``holes", for a formal definition see \cite{Hat02}.
 A simplicial complex is \emph{contractable} if it is
@@ -242,11 +243,11 @@ Throughout the remainder of the paper we assume that $m$ and $p$ are
 mesh patterns.
 
 \begin{lem}
-Let $s$ be a permutation. For any sets $A\subseteq B$ the interval $[s^A,s^B]$ is isomorphic to the boolean
- lattice~$B_{|B|-|A|}$. Therefore, $\mu(s^A,s^B)=(-1)^{|B|-|A|}$ and
-$[s^A,s^B]$ is shellable.
+Let $\pi$ be a permutation. For any sets $A\subseteq B$ the interval $[\pi^A,\pi^B]$ is isomorphic to the boolean
+ lattice~$B_{|B|-|A|}$. Therefore, $\mu(\pi^A,\pi^B)=(-1)^{|B|-|A|}$ and
+$[\pi^A,\pi^B]$ is shellable.
 \begin{proof}
-The elements of $[s^A,s^B]$ are exactly the mesh patterns $s^C$
+The elements of $[\pi^A,\pi^B]$ are exactly the mesh patterns $\pi^C$
 where $C\subseteq B\setminus A$, which implies the result.
 \end{proof}
 \end{lem}
@@ -259,7 +260,7 @@ $$\mu(\epsilon^{A},p)=\begin{cases}
 0,&\mbox{ otherwise}
 \end{cases}.$$
 \begin{proof}
-The first two cases are trivial. By \cref{lem:max} we know that
+The first two cases are trivial. By the proof of \cref{lem:max} we know that
 $\epsilon^{(0,0)}$ is not contained in any larger mesh patterns, which implies
 $\mu(\epsilon^{(0,0)},p)=0$, for all $p\not=\epsilon^{(0,0)}$. If $|\cl{p}|+|\sh{p}|>1$, then
 $(\epsilon^\emptyset,p)$ contains a unique minimal element $1^\emptyset$, so
@@ -268,8 +269,8 @@ $\mu(\epsilon^\emptyset,p)=0$.
 \end{lem}
 
 \begin{lem}
-The interval $[s^\emptyset,t^\emptyset]$ is isomorphic to
-$[s,t]$ in $\mathcal{P}$, so $\muM(s^\emptyset,t^\emptyset)=\muP(s,t).$
+The interval $[\pi^\emptyset,\sigma^\emptyset]$ is isomorphic to
+$[\pi,\sigma]$ in $\mathcal{P}$, so $\muM(\pi^\emptyset,\sigma^\emptyset)=\muP(\pi,\sigma).$
 \end{lem}
 
 The M\"obius function of the classical permutation poset is known to be
@@ -336,7 +337,7 @@ of such a sequence maps to an adjacency tail.  Combining this with the fact that
 The M\"obius function on $\mathcal{P}$ often takes larger values than on $\mathcal{M}$,
 but it is not always true that $\muM(m,p)\le
 \muP(\cl{m},\cl{p})$. A simple counterexample is the interval
-$$[1^{(0,1)},123^{(0,2),(0,3),(1,2),(1,3)}],$$ this has M\"obius function $1$,
+$$[1^{(0,1)},123^{(0,2),(0,3),(1,2),(1,3)}],$$ which has M\"obius function $1$,
 however $\muP(1,123)=0$, see \cref{fig:1-123}.
 
 \begin{figure}\centering
@@ -388,8 +389,8 @@ Let $P(n,i)$ be the probability that the letter $i$ is an occurrence of
 $1^{(0,0)}$ in a length $n$ mesh pattern, and let $P(n)$ be the probability
 that a length $n$ mesh pattern contains $1^{(0,0)}$.
 
-The probability that $i$ is an occurrence of $1^{(0,0)}$ can be bounded
-above by first considering the location $k$ of $i$, each having probability
+The probability $P(n,i)$ can be bounded
+above by first considering the index $k$ of $i$, each having probability
 $\frac{1}{n}$, and then requiring
 that all boxes south west of $i$ are filled, of which there are $ik$. This
 provides an upper bound, because it is possible that there is a
@@ -403,22 +404,24 @@ P(n,i)&\le\sum_{k=1}^{n}\frac{1}{n}\left(\frac{1}{2^i}\right)^k
 \le\frac{2}{n2^i}
 \end{align*}
 
-To compute the probability that a length $n$ mesh pattern contains $1^{(0,0)}$ we
-can sum over all the letters $i$.
+To compute the probability $P(n)$ we
+can sum over all the $P(n,i)$.
 Note again this is an over estimate because if a mesh pattern contains multiple
 occurrences of $1^{(0,0)}$ it counts that mesh pattern more than once.
 
 $$
 P(n)\le\sum_{i=1}^{n}P(n,i)\le\sum_{i=1}^{n}\frac{2}{n2^i}
-=\frac{2}{n}\left(\frac{\left(\frac{1}{2}\right)^{n+1}-1}{\frac{1}{2}-1}-1\right)
+=\frac{2}{n}\left(\frac{1-\left(\frac{1}{2}\right)^{n+1}}{1-\frac{1}{2}}-1\right)
 \le\frac{2}{n}
 $$
 
 Repeating this calculation for the other three shadings of $1$ implies that
 the probability of containing any of the forbidden mesh patterns is bounded
-by $\frac{8}{n}\rightarrow 0$.
+by $\frac{8}{n}$ which tends to zero as $n$ tends to infinity.
 \end{proof}
 \end{lem}
+
+Because of the previous lemma we obtain:
 
 \begin{cor}
 As $n$ tends to infinity the proportion of mesh patterns $p$ of length n such
@@ -442,7 +445,7 @@ $n$ contains $m$ tends to $0$ as $n$ tends to infinity.
 
 \section{Purity}\label{sec:purity}
 Recall that a poset is pure (also known as ranked) if all the maximal chains have the same length, and as we
-can see from \cref{fig:intEx} intervals of the mesh pattern poset can be non-pure. In this section we classify
+can see from \cref{fig:intEx}, intervals of the mesh pattern poset can be non-pure. In this section we classify
 which intervals~$[1^\emptyset,m]$ are non-pure. First we consider the length of the longest maximal chain in
 any interval~$[1^\emptyset,m]$, that is, the dimension of $[1^\emptyset,m]$.
 
@@ -456,7 +459,7 @@ step of a chain we must deshade a box or delete a point.
 \end{proof}
 \end{lem}
 
-So we define the \emph{dimension} of a mesh pattern as $\dim(m)=|\cl{m}|+|\sh{m}|$ and we say an
+Therefore, we define the \emph{dimension} of a mesh pattern as $\dim(m)=|\cl{m}|+|\sh{m}|$ and we say an
 edge $m\lessdot p$ is \emph{impure} if $\dim(p)-\dim(m)>1$.
 Next we give a classification of impure edges.
 
@@ -610,7 +613,7 @@ shellable but~\eqref{eq:a} is shellable, and $[321,521643]$ is shellable
 but \eqref{eq:b} is not shellable.
 
 In \cite{McSt13} the direct sum operation is used to show that almost all
-intervals of the permutation poset are not shellable in $\mathcal{P}$. We can generalise the direct sum operation to
+intervals of the permutation poset are not shellable in $\mathcal{P}$. We generalise the direct sum operation to
 mesh patterns. Given two permutations $\alpha=\alpha_1\ldots\alpha_a$ and
 $\beta=\beta_1\ldots\beta_b$ the direct sum of the two is defined as
 $\alpha\oplus\beta=\alpha_1\ldots\alpha_a(\beta_1+a)(\beta_2+a)\ldots(\beta_b+a)$,
@@ -638,14 +641,14 @@ important properties in the permutation sense, that the first $|\cl{s}|$ letters
 an occurrence of $s$ and the final $|\cl{t}|$ letters are an occurrence of $t$.
 
 A permutation is said to be indecomposable if it cannot be written as the direct
-sum of smaller permutations. We can generalise this to mesh patterns.
+sum of smaller permutations. We generalise this to mesh patterns.
 \begin{defn}
 A mesh pattern $m$ is \emph{indecomposable} (resp.~\emph{skew-indecomposable}) if it
 cannot be written $m=a\oplus b$ (resp. $m=a\ominus b$), where neither $a$ nor $b$ is $m$.
 \end{defn}
 \begin{rem}
 It is well known that a permutation has a unique decomposition into indecomposable permutations.
-Which implies that a mesh pattern also has a unique decomposition.
+This implies that a mesh pattern also has a unique decomposition.
 \end{rem}
 
 Using these definitions we can give a large class of strongly disconnected intervals,
