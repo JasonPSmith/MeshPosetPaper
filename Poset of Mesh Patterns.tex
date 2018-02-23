@@ -1,21 +1,52 @@
-\documentclass[11pt,a4paper,oneside]{article}
-\usepackage{preamble}
-\title{The Poset of Mesh Patterns}
+\documentclass[preprint,11pt]{elsarticle}
+
+\usepackage{amsmath,amsthm,amssymb,tikz,patternmacros,subcaption}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{xcolor}
+\usetikzlibrary{shapes,patterns}
+\hypersetup{colorlinks}
+
+\newtheorem{thm}{Theorem}\crefname{thm}{Theorem}{Theorems}
+\newtheorem{lem}[thm]{Lemma}\crefname{lem}{Lemma}{Lemmas}
+\newtheorem{ex}[thm]{Example}\crefname{ex}{Example}{Examples}
+\newtheorem{cor}[thm]{Corollary}\crefname{cor}{Corollary}{Corollaries}
+\newtheorem{conj}[thm]{Conjecture}\crefname{conj}{Conjecture}{Conjectures}
+\newtheorem{prop}[thm]{Proposition}\crefname{prop}{Proposition}{Propositions}
+\newtheorem{defn}[thm]{Definition}\crefname{defn}{Definition}{Definitions}
+\newtheorem{rem}[thm]{Remark}\crefname{rem}{Remark}{Remarks}
+\newtheorem{que}[thm]{Question}\crefname{que}{Question}{Questions}
+\newtheorem{clm}{Claim}\crefname{clm}{Claim}{Claims}
+\crefname{figure}{Figure}{Figure}
+
+\newcommand\cl[1]{#1_{cl}}
+\newcommand\sh[1]{#1_{sh}}
+\newcommand\occX[2]{\eta^{#2}_{#1}}
+\newcommand\mX[2]{#1^{-}_{#2}}
+\DeclareMathOperator{\muP}{\mu_\mathcal{P}}
+\DeclareMathOperator{\muM}{\mu_\mathcal{M}}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{thm}{section}
 
 \begin{document}
-	\maketitle
-	
-	\begin{abstract}
+\begin{frontmatter}
+\title{The Poset of Mesh Patterns}
+\author{Jason P. Smith\fnref{1}}
+\fntext[1]{This research was supported by the EPSRC Grant EP/M027147/1}
+\author{Henning Ulfarsson\fnref{2}}
+\fntext[2]{Research partially supported by grant 141761-051 from the Icelandic Research Fund}
+\begin{abstract}
 	We introduce the poset of mesh patterns, which generalises the permutation pattern poset.
-	We fully classify the mesh patterns for which the interval $[1^\emptyset,m]$ is non-pure,
+	We fully classify the mesh patterns for which the interval~$[1^\emptyset,m]$ is non-pure,
 	where $1^\emptyset$ is the unshaded singleton mesh
 	pattern. We present some results on the M\"obius function of the poset, and show
-	that $\mu(1^\emptyset,m)$ is almost always zero. Finally, we introduce a class
+	that~$\mu(1^\emptyset,m)$ is almost always zero. Finally, we introduce a class
 	of disconnected and non-shellable intervals by generalising the direct product operation
 	from permutations to mesh patterns.
-	
-	
 	\end{abstract}
+\end{frontmatter}
 
 \section{Introduction}
 Mesh patterns were first introduced by Br\"and\'en and Claesson in \cite{Bra11} as a generalisation
@@ -33,7 +64,7 @@ This allows us to generalise the classical permutation poset to a poset of mesh 
 $(\sigma,S)\le(\pi,P)$ if there is an occurrence of $(\sigma,S)$ in~$(\pi,P)$. The permutation poset
 has received a lot of attention in recent years, but due to its
 complicated structure a full understanding of it has proven elusive,
-see \cite{McSt13,Smith15}. The poset of mesh patterns, which we define
+see~\cite{McSt13,Smith15}. The poset of mesh patterns, which we define
 here, contains the poset of permutations as an induced subposet. Therefore, investigating
 the poset of mesh patterns may lead to a better understanding of the poset of permutations. Moreover, 
 studying this poset may help to answer some of the open questions on mesh patterns.
@@ -54,8 +85,8 @@ A \emph{mesh pattern} is then obtained by shading some of the boxes of this grid
 pattern takes the form $p=(\cl{p},\sh{p})$, where $\cl{p}$ is a permutation
 and $\sh{p}$ is a set of coordinates recording the shaded boxes, which are indexed
 by their south west corner. For ease of notation we sometimes denote the mesh
-pattern $(\cl{p},\sh{p})$ as $\cl{p}^{\sh{p}}$. We let $|\cl{p}|$ represent the length of $\cl{p}$
-and $|\sh{p}|$ the size of $\sh{p}$, and define the \emph{length} of $p$ as $|\cl{p}|$.
+pattern $(\cl{p},\sh{p})$ as $\cl{p}^{\sh{p}}$. We let~$|\cl{p}|$ represent the length of $\cl{p}$
+and $|\sh{p}|$ the size of $\sh{p}$, and define the \emph{length} of $p$ as $|\cl{p}|$, which we denote $|p|$.
 For example, the mesh pattern $(132,\{(0,0),(0,1),(2,2)\})$,
 or equivalently $132^{(0,0),(0,1),(2,2)}$, has the form:
 \begin{center}
@@ -72,7 +103,7 @@ we say that $\pi$ \emph{avoids} $\sigma$.
 Consider a mesh pattern $(\sigma,S)$ and an occurrence $\eta$ of $\sigma$ in $\pi$, in the
 classical permutation pattern sense. Each box $(i,j)$ of $S$ corresponds to an
 area $R_{\eta}(i,j)$ in the plot of $\pi$, which is the rectangle whose corners are the points in $\pi$
-which in $\eta$ correspond to the letters $\sigma_i,\sigma_{i+1},j,j+1$ of $\sigma$.
+which in $\eta$ correspond to the letters $\sigma_i,\sigma_{i+1},j,j+1$ of $\sigma$, and the letters $\sigma_0,\sigma_{|\sigma|+1},0$ and $|\sigma|+1$ are to the south, north, east and west boundaries, respectively.
 A point is contained in $R_\eta(i,j)$ if it is in the interior of $R_\eta(i,j)$, that is, not on the boundary.
 For example, in \cref{fig:occEx} where $\eta$ is the occurence in red, the area
 of $R_\eta(0,0)$ contains the boxes $\{(0,0),(1,0),(0,1),(1,1)\}$, and it contains exactly one point.
@@ -164,8 +195,8 @@ in itself, and in no other mesh patterns.
 In this subsection we briefly introduce some poset topology, and refer the reader to \cite{Wac07}
 for a comprehensive overview of the topic, including any definitions we omit here.
 
-The \emph{M\"obius function} of an interval $[\alpha,\beta]$ of a poset is defined by:
-$\mu(a,a)=1$, for all $a$, $\mu(a,b)=0$ if $a\not\le b$, and $$\mu(a,b)=-\sum_{c\in[a,b)}\mu(a,c).$$
+The \emph{M\"obius function} of an interval $[\alpha,\beta]$ of a poset is defined by:\linebreak
+${\mu(a,a)=1}$, for all $a$, $\mu(a,b)=0$ if $a\not\le b$, and $$\mu(a,b)=-\sum_{c\in[a,b)}\mu(a,c).$$
 See \cref{fig:1-123} for an example. The M\"obius function of a poset $P$ is given by $\mu(P)=\mu(\hat{0},\hat{1})$, where $\hat{0}$ and $\hat{1}$ are unique minimal and maximal elements which we add to $P$. 
 
 In a poset we say that $\alpha$ \emph{covers} $\beta$, denoted $\alpha\gtrdot\beta$, if $\alpha>\beta$
@@ -176,7 +207,7 @@ maximal chains have the same length. The \emph{dimension} of a poset $P$, denote
 length of the longest maximal chain. For example, the interval in \cref{fig:intEx} is nonpure because
 there is one maximal chain of length $3$ ($\pattin{1}{1}{}\lessdot\pattin{1}{1}{0/1}\lessdot
 \pattin{2}{1,2}{0/2,1/2}\lessdot\pattin{3}{1,2,3}{0/3,1/3,2/3}$), two maximal chains of length $4$
-and all other maximal chains have length $5$, so the interval has dimension is $5$.
+and all other maximal chains have length $5$, so the interval has dimension $5$.
 
 The \emph{interior} of an interval $[\alpha,\beta]$ is obtained by removing $\alpha$ and $\beta$,
 and is denoted $(\alpha,\beta)$. The \emph{order complex} of an interval $[\alpha,\beta]$, denoted
@@ -189,7 +220,7 @@ $(\dim F_k)$-dimensional, for all $k=2,\ldots,t$. Being shellable implies other 
 on the topology, such as having the homotopy type of a wedge of spheres.
 
 An interval $I$ is \emph{disconnected} if the interior can be split into two disjoint pairwise incomparable sets,
-that is, $I=A\cup B$ with $A\cap B=\emptyset$ and for every $a\in A$
+that is, $I=A\cup B$ with $A\cap B=\emptyset$ and for every~$a\in A$
 and $b\in B$ we have $a\not\le b$ and $b\not\le a$.
 Each interval $I$ can be decomposed into its smallest connected parts, which we call the \emph{components} of $I$.
 A component is \emph{nontrivial} if it contains more than one element
@@ -203,7 +234,7 @@ We can use disconnectivity as a test for shellability using the following result
 \begin{lem}\label{lem:strongdis}
 If an interval is strongly disconnected, then it is not shellable.
 \begin{proof}
-Consider any ordering of the maximal chains and let $F_k$, with $k>1$, be the first chain where
+Consider any ordering of the maximal chains and let $F_k$, with ${k>1}$, be the first chain where
 every preceding chain belongs to a different component and $F_k$ belongs to a
 nontrivial component. Note that such an $F_k$ exists in every ordering because the interval
 is strongly disconnected, and because $F_k$ belongs to a nontrivial component it must have dimension
@@ -220,7 +251,7 @@ we obtain the following:
 An interval which contains a strongly disconnected subinterval is not shellable.
 \end{cor}
 
-Finally, we present a useful result known as the Quillen Fiber Lemma~\cite{Quillen78}. Two simplicial
+Finally, we present a useful result known as the Quillen Fiber Lemma \cite{Quillen78}. Two simplicial
 complexes are homotopy equivalent  if one can be obtained by deforming the other but
 not breaking or creating any new ``holes", for a formal definition see \cite{Hat02}.
 A simplicial complex is \emph{contractable} if it is
@@ -230,21 +261,21 @@ ideal $P_{\ge p}=\{q\in P\,|\,q\ge p\}$.
 
 \begin{prop}\label{thm:Quil}(Quillen Fiber Lemma)
 Let $\phi:P\rightarrow Q$ be an order-preserving map between posets such that for any
-$x\in Q$ the complex $\Delta(\phi^{-1}(Q_{\ge x}))$ is contractible.
+$x\in Q$ the complex\linebreak $\Delta(\phi^{-1}(Q_{\ge x}))$ is contractible.
 Then $P$ and $Q$ are homotopy equivalent.
 \end{prop}
 
 \section{M\"obius Function}\label{sec:MF}
 In this section we present some results on the M\"obius function of the mesh pattern poset.
 We begin with some simple results on: mesh patterns with the same underlying permutations;
-the mesh patterns with no points $\epsilon^\emptyset$ and $\epsilon^{(0,0)}$;
+the mesh patterns with no points~$\epsilon^\emptyset$ and $\epsilon^{(0,0)}$;
 and mesh patterns with no shaded boxes.
 Throughout the remainder of the paper we assume that $m$ and $p$ are
 mesh patterns.
 
 \begin{lem}
-Let $\pi$ be a permutation. For any sets $A\subseteq B$ the interval $[\pi^A,\pi^B]$ is isomorphic to the boolean
- lattice~$B_{|B|-|A|}$. Therefore, $\mu(\pi^A,\pi^B)=(-1)^{|B|-|A|}$ and
+Let $\pi$ be a permutation. For any sets $A\subseteq B$ the interval~$[\pi^A,\pi^B]$ is isomorphic to the boolean
+ lattice~$B_{|B|-|A|}$. Therefore,\linebreak ${\mu(\pi^A,\pi^B)=(-1)^{|B|-|A|}}$ and
 $[\pi^A,\pi^B]$ is shellable.
 \begin{proof}
 The elements of $[\pi^A,\pi^B]$ are exactly the mesh patterns $\pi^C$
@@ -269,8 +300,8 @@ $\mu(\epsilon^\emptyset,p)=0$.
 \end{lem}
 
 \begin{lem}
-The interval $[\pi^\emptyset,\sigma^\emptyset]$ is isomorphic to
-$[\pi,\sigma]$ in $\mathcal{P}$, so $\muM(\pi^\emptyset,\sigma^\emptyset)=\muP(\pi,\sigma).$
+The interval $[\sigma^\emptyset,\pi^\emptyset]$ is isomorphic to
+$[\sigma,\pi]$ in $\mathcal{P}$, so $$\muM(\sigma^\emptyset,\pi^\emptyset)=\muP(\sigma,\pi).$$
 \end{lem}
 
 The M\"obius function of the classical permutation poset is known to be
@@ -288,9 +319,9 @@ which maps certain intervals of the permutation poset to intervals of $\mathcal{
 A \emph{descent} in a permutation $\pi=\pi_1\pi_2\ldots\pi_n$ is a pair of
 letters $\pi_i,\pi_{i+1}$ with $\pi_{i}>\pi_{i+1}$. We call $\pi_{i+1}$ the \emph{descent bottom}.
 An \emph{adjacency tail} is a letter $\pi_i$ with $\pi_i=\pi_{i-1}\pm 1$.
-Let $adj(\pi)$ be the number of adjacency tails in $\pi$.
+Let $adj(\pi)$ be the number of adjacency tails in~$\pi$.
 Consider the set $\Gamma$ of mesh patterns where the permutation has exactly one descent,
-the descent bottom is $1$ and we shade everything south west of $1$. For example, the mesh pattern $2314^{(0,0),(1,0),(2,0)}$:
+the descent bottom is $1$ and we shade everything south west of~$1$. For example, the mesh pattern $2314^{(0,0),(1,0),(2,0)}$:
 \begin{center}
 \patt{0.4}{4}{2,3,1,4}[0/0,1/0,2/0][][][][][4].
 \end{center}
@@ -299,8 +330,8 @@ the descent bottom is $1$ and we shade everything south west of $1$. For example
 Consider a mesh pattern $m\in \Gamma$, then $[21^{(0,0),(1,0)},m]$ is shellable and
 \[
 \mu(21^{(0,0),(1,0)},m)=\begin{cases}
-(-1)^{|m|}\lfloor\frac{n}{2}\rfloor,&\text{ if } adj(\cl{m})=0\\
-(-1)^{|m|},& \text{ if } adj(\cl{m})=1 \text{ and the tail is before the descent}\\
+(-1)^{|m|}\lfloor\frac{|m|}{2}\rfloor,&\text{ if } adj(\cl{m})=0\\
+(-1)^{|m|},& \text{ if } adj(\cl{m})=1 \text{ \& tail before descent}\\
 0, &\text{ otherwise}
 \end{cases}.
 \]
@@ -318,7 +349,7 @@ So $f$ is a bijection.
 
 It is straightforward
 to check that $f$ is order preserving. So
-the interval $[21^{(0,0),(1,0)},m]$ is isomorphic to $[0,f(m)]$ in $\mathcal{W}$.
+the interval~$[21^{(0,0),(1,0)},m]$ is isomorphic to $[0,f(m)]$ in $\mathcal{W}$.
 It was shown in
 \cite{Bjo90} that intervals of $\mathcal{W}$
 are shellable, which proves the shellability part. It was also shown that the M\"obius
@@ -330,7 +361,7 @@ non-initial letter is part of the occurrence.
 So for an occurrence of $0$ in $f(m)$ to be normal there can be no $1$ directly preceded by a $1$ and at most one
 $0$ directly preceded by a $0$. If such a $0$ exists it must be the occurrence,
 otherwise any $0$ can be the occurrence. In our bijection a non-initial letter 
-of such a sequence maps to an adjacency tail.  Combining this with the fact that if there are no adjacency tails, then the letters before the descent must be all the even letters of which there are $\lfloor\frac{n}{2}\rfloor$, completes the proof.
+of such a sequence maps to an adjacency tail.  Combining this with the fact that if there are no adjacency tails, then the letters before the descent must be all the even letters of which there are $\lfloor\frac{|m|}{2}\rfloor$, completes the proof.
 \end{proof}
 \end{lem}
 
@@ -365,9 +396,9 @@ Consider an interval $[s^\emptyset,p]$ in $\mathcal{M}$ with $\sh{p}\not=\emptys
 If $s^B\not\in(s^\emptyset,p)$ for any set $B$, then $\mu(s^\emptyset,p)=0$.
 \begin{proof}
 Consider the map $f:(s^\emptyset,p)\rightarrow A:x\mapsto\cl{x}^\emptyset,$ that is, $f$ removes all shadings from~$x$.
-This implies that ${A=(s^\emptyset,\cl{p}^{\emptyset}]}$, so  $A$ is contractible, because it has the
-unique maximal element~$\cl{p}^\emptyset$, hence $\mu(A)=0$. Moreover, $f^{-1}(A_{\ge y})=[y,p)$,
-for all $y\in A$, which is contractible. Therefore, $(s^\emptyset,p)$ is homotopy equivalent
+We can see that ${A=(s^\emptyset,\cl{p}^{\emptyset}]}$, so  $A$ is contractible, because it has the
+unique maximal element~$\cl{p}^\emptyset$, hence $\mu(A)=0$. Moreover,~$f^{-1}(A_{\ge y})=[y,p)$,
+for all $y\in A$, which is contractible. Therefore,~$(s^\emptyset,p)$ is homotopy equivalent
 to $A$ by the Quillen Fiber Lemma (\cref{thm:Quil}), which implies~$\mu(s^\emptyset,p)=0$.
 \end{proof}
 \end{lem}
@@ -382,11 +413,11 @@ We can combine Lemma~\ref{lem:mu0} with the following result to see that the
 M\"obius function is almost always zero on the interval $[1^\emptyset,p]$.
 
 \begin{lem}
-As $n$ tends to infinity the proportion of mesh patterns of length $n$ that contain any of
+As $n$ tends to infinity the proportion of mesh patterns of length~$n$ that contain any of
 $\{1^{(0,0)},1^{(1,0)},1^{(0,1)},1^{(1,1)}\}$ approaches $0$.
 \begin{proof}
-Let $P(n,i)$ be the probability that the letter $i$ is an occurrence of
-$1^{(0,0)}$ in a length $n$ mesh pattern, and let $P(n)$ be the probability
+Let $P(n,i)$ be the probability that the letter $i$ is an occurrence of~$1^{(0,0)}$
+in a length $n$ mesh pattern, and let $P(n)$ be the probability
 that a length $n$ mesh pattern contains $1^{(0,0)}$.
 
 The probability $P(n,i)$ can be bounded
@@ -437,7 +468,7 @@ fact we conjecture the opposite is true:
 
 \begin{conj}
 Given a mesh pattern $m$, with at least one shaded box, the probability that a random mesh pattern of length
-$n$ contains $m$ tends to $0$ as $n$ tends to infinity.
+$n$ contains $m$ tends to~$0$ as $n$ tends to infinity.
 \end{conj}
 
 
@@ -481,7 +512,7 @@ shadings.
 First we show the backwards direction. Because $m$ is obtained by deleting a
 point that merges shadings, $m$ must have one less point and at least one less
 shaded box so $\dim(p)-\dim(m)\ge2$. So it suffices to show that there is no $z$ such
-that $m<z<p$. Suppose such a $z$ exists, then if $z$ is obtained by deshading a
+that $m<z<p$. Suppose such a $z$ exists, then if~$z$ is obtained by deshading a
 box in $p$ it can no longer contain $m$ because all occurrences of $m$ in $p$
 use all the shaded boxes of $p$. If $z$ is obtained by deleting a point and $m<z$,
 then $\cl{m}=\cl{z}$. Therefore, we can deshade some boxes
@@ -523,10 +554,10 @@ by deleting the point which corresponds to $i$ in $\eta$.
 
 The mesh pattern $b$ is constructed from $y$ by adding a collection of points.
 None of these added points can be touching a shaded box in $b$, as they must be added to empty
-boxes of~$y$. Moreover, the set of occurrences of $a$ in $b$ correspond to the set
+boxes of~$y$. Moreover, the set of occurrences of~$a$ in $b$ correspond to the set
 of occurrences of $x$ in $y$, after adding the new points. This implies that 
 the occurrences of $x$ in $y$ satisfy the conditions of \cref{lem:impureEdge} if and only if the
-occurrences of $a$ in $b$ satisfy the same conditions. So \cref{lem:impureEdge} implies $a\lessdot b$ is an
+occurrences of~$a$ in $b$ satisfy the same conditions. So \cref{lem:impureEdge} implies $a\lessdot b$ is an
 impure edge.
 \end{proof}
 \end{lem}
@@ -614,8 +645,8 @@ but \eqref{eq:b} is not shellable.
 
 In \cite{McSt13} the direct sum operation is used to show that almost all
 intervals of the permutation poset are not shellable in $\mathcal{P}$. We generalise the direct sum operation to
-mesh patterns. Given two permutations $\alpha=\alpha_1\ldots\alpha_a$ and
-$\beta=\beta_1\ldots\beta_b$ the direct sum of the two is defined as
+mesh patterns. Given two permutations $\alpha=\alpha_1\ldots\alpha_a$
+and~$\beta=\beta_1\ldots\beta_b$ the direct sum of the two is defined as
 $\alpha\oplus\beta=\alpha_1\ldots\alpha_a(\beta_1+a)(\beta_2+a)\ldots(\beta_b+a)$,
 that is, we increase the value of each letter of $\beta$ by the
 length of $\alpha$ and append it to $\alpha$. This can also be thought of in terms of the plots of $\alpha$
@@ -626,7 +657,7 @@ by the length of $\beta$. We extend these definitions to mesh patterns in the fo
 
 \begin{defn}\label{defn:directsum}
 Consider two mesh patterns $s$ and $t$, where the top right corner of $s$
-and bottom left corner of $t$ are not shaded. The direct sum $s\oplus t$ has the classical pattern
+and bottom left corner of $t$ are not shaded. The direct sum~$s\oplus t$ has the classical pattern
 $\cl{s}\oplus\cl{t}$ and shaded boxes $\sh{s}\cup\{(i+|\cl{s}|,j+|\cl{s}|)\,|\,(i,j)\in\sh{t}\}$,
 and also for any shaded boxes $(i,|\cl{s}|)$, $(|\cl{s}|,i)$, $(j,|\cl{s}|)$ or $(|\cl{s}|,j)$,
 shaded all the boxes north, east, south or west of the box, respectively,
@@ -643,7 +674,7 @@ an occurrence of $s$ and the final $|\cl{t}|$ letters are an occurrence of $t$.
 A permutation is said to be indecomposable if it cannot be written as the direct
 sum of smaller permutations. We generalise this to mesh patterns.
 \begin{defn}
-A mesh pattern $m$ is \emph{indecomposable} (resp.~\emph{skew-indecomposable}) if it
+A mesh pattern $m$ is \emph{indecomposable} (resp. \emph{skew-\linebreak indecomposable}) if it
 cannot be written $m=a\oplus b$ (resp. $m=a\ominus b$), where neither $a$ nor $b$ is $m$.
 \end{defn}
 \begin{rem}
@@ -667,23 +698,23 @@ $[m,m\oplus m]$ is strongly disconnected.
 By Lemma 4.2 in \cite{McSt13} the interval $[\cl{m},\cl{m}\oplus \cl{m}]$ is strongly disconnected,
 with components $P_1=\{\cl{m}\oplus x\,|\,x\in [1,\cl{m})\}$ and
 $P_2=\{x\oplus \cl{m}\,|\,x\in [1,\cl{m})\}$. Consider any pair $\alpha,\beta\in[m,m\oplus m]$,
-if $\cl{\alpha}$ and $\cl{\beta}$ are not in the same component of  $[\cl{m},\cl{m}\oplus \cl{m}]$,
+if $\cl{\alpha}$ and~$\cl{\beta}$ are not in the same component of  $[\cl{m},\cl{m}\oplus \cl{m}]$,
 then $\alpha$ and $\beta$ are incomparable. Let $\hat{P_1}=\{\alpha\,|\,\cl{\alpha}\in P_1\}$
 and $\hat{P_2}=\{\alpha\,|\,\cl{\alpha}\in P_2\}$. However, $\hat{P_1}\cup\hat{P_2}\not=(\cl{m},\cl{m\oplus m})$
-because it does not include the mesh patterns $\alpha$ with $\cl{\alpha}=\cl{m}\oplus \cl{m}$.
+because it does not include the mesh patterns $\alpha$ with ${\cl{\alpha}=\cl{m}\oplus \cl{m}}$.
 
-There are exactly two occurrences of $m$ in $m\oplus m$. These are $\eta_1$ the first $|m|$ letters
-and $\eta_2$ the last $|m|$ letters. Note that each shaded box of $m\oplus m$ is used by at least one
+There are exactly two occurrences of $m$ in $m\oplus m$. These are $\eta_1$ the first~$|m|$ letters
+and $\eta_2$ the last $|m|$ letters. Note that each shaded box of~${m\oplus m}$ is used by at least one
 of $\eta_1$ and $\eta_2$, so if we deshade a box the resulting pattern $x$ contains at most one occurrence of $m$,
 either the first or last $|m|$ letters. Let $Q_1$ and $Q_2$ be sets of patterns with underlying permutation
 $\cl{m}\oplus \cl{m}$ where the first and last $|m|$ letters are the only occurrence of $m$, respectively. So any
 element $Q_1$ cannot contain an element in $P_2\cup Q_2$ and similarly any element of $Q_2$ cannot
-contain an element of $P_1\cup Q_1$. Therefore, $P_1\cup Q_1$ and $P_2\cup Q_2$ are disconnected nontrivial components of
-$[m,m\oplus m]$.
+contain an element of ${P_1\cup Q_1}$. Therefore, $P_1\cup Q_1$ and $P_2\cup Q_2$ are disconnected
+nontrivial components of $[m,m\oplus m]$.
 \end{proof}
 \end{lem}
 \begin{cor}
-If $m$ is skew-indecomposable, $\dim m>1$ and $(|m|,0),(0,|m|)\not\in\sh{m}$, then
+If $m$ is skew-indecomposable, $(|m|,0),(0,|m|) \not\in\sh{m}$ and $\dim m>1$, then
 $[m,m\ominus m]$ is strongly disconnected.
 \end{cor}
 
@@ -692,7 +723,7 @@ almost all intervals of the classical permutation poset are not shellable. The
 proof of this follows from the Marcus-Tardos theorem. We have seen this result
 does not apply in the mesh pattern case, so we cannot prove a similar result
 using this technique.  A similar problem was studied for boxed mesh patterns in
-permutations in \cite{AKV13}, which is equivalent to boxed mesh patterns in
+permutations in~\cite{AKV13}, which is equivalent to boxed mesh patterns in
 fully shaded mesh patterns. So we present the following open question:
 
 \begin{que}
@@ -707,6 +738,94 @@ Can a formula for the M\"obius function of $\mathcal{M}$ be obtained by decompos
 using direct sums and skew sums?
 \end{que}
 
-\bibliographystyle{alpha}
-\bibliography{bibfile}
+%\bibliographystyle{alpha}
+%\bibliography{bibfile}
+\section*{\refname}
+\begin{thebibliography}{BJJS11}
+
+\bibitem[AKV13]{AKV13}
+Sergey Avgustinovich, Sergey Kitaev, and Alexandr Valyuzhenich.
+\newblock Avoidance of boxed mesh patterns on permutations.
+\newblock {\em Discrete Applied Mathematics}, 161(1–2):43 -- 51, 2013.
+
+\bibitem[BC11]{Bra11}
+Petter Br{\"a}nd{\'e}n and Anders Claesson.
+\newblock Mesh patterns and the expansion of permutation statistics as sums of
+  permutation patterns.
+\newblock {\em Electron. J. Combin}, 18(2):P5, 2011.
+
+\bibitem[BJJS11]{BJJS11}
+Alexander Burstein, V{\'{\i}}t Jel{\'{\i}}nek, Eva Jel{\'{\i}}nkov{\'a}, and
+  Einar Steingr{\'{\i}}msson.
+\newblock The {M}\"obius function of separable and decomposable permutations.
+\newblock {\em Journal of Combinatorial Theory. Series A}, 118(8):2346--2364,
+  2011.
+
+\bibitem[Bj{\"o}90]{Bjo90}
+Anders Bj{\"o}rner.
+\newblock The {M}{\"o}bius function of subword order.
+\newblock {\em Institute for Mathematics and its Applications}, 19:118, 1990.
+
+\bibitem[CTU15]{CTU15}
+Anders Claesson, Bridget~Eileen Tenner, and Henning Ulfarsson.
+\newblock {Coincidence among families of mesh patterns}.
+\newblock {\em The Australasian Journal of Combinatorics}, 63:88--106, 2015.
+
+\bibitem[Hat02]{Hat02}
+Allen Hatcher.
+\newblock {\em Algebraic Topology}.
+\newblock Cambridge University Press, 2002.
+
+\bibitem[JKR15]{JKR15}
+Miles Jones, Sergey Kitaev, and Jeffrey Remmel.
+\newblock {Frame patterns in n-cycles}.
+\newblock {\em Discrete Mathematics}, 338(7):1197--1215, July 2015.
+
+\bibitem[MS15]{McSt13}
+Peter R.~W. McNamara and Einar Steingr{\'\i}msson.
+\newblock On the topology of the permutation pattern poset.
+\newblock {\em Journal of Combinatorial Theory, Series A}, 134:1--35, 2015.
+
+\bibitem[MT04]{MT04}
+Adam Marcus and G{\'a}bor Tardos.
+\newblock Excluded permutation matrices and the {S}tanley--{W}ilf conjecture.
+\newblock {\em Journal of Combinatorial Theory, Series A}, 107(1):153--160,
+  2004.
+
+\bibitem[Qui78]{Quillen78}
+Daniel Quillen.
+\newblock {Homotopy properties of the poset of nontrivial p-subgroups of a
+  group}.
+\newblock {\em Advances in Mathematics}, 28(2):101--128, 1978.
+
+\bibitem[Smi14]{Smith13}
+Jason~P. Smith.
+\newblock On the {M}\"obius function of permutations with one descent.
+\newblock {\em The Electronic Journal of Combinatorics}, 21:2.11, 2014.
+
+\bibitem[Smi16]{Smith14}
+Jason~P. Smith.
+\newblock Intervals of permutations with a fixed number of descents are
+  shellable.
+\newblock {\em Discrete Mathematics}, 339(1):118 -- 126, 2016.
+
+\bibitem[Smi17]{Smith15}
+Jason~P. Smith.
+\newblock A formula for the {M}\"obius function of the permutation poset based
+  on a topological decomposition.
+\newblock {\em Advances in Applied Mathematics}, 91:98 -- 114, 2017.
+
+\bibitem[TU18]{TU17}
+Murray Tannock and Henning Ulfarsson.
+\newblock Equivalence classes of mesh patterns with a dominating pattern.
+\newblock {\em Discrete Mathematics and Theoretical Computer Science}, Special
+  issue for Permutation Patterns 2016, vol. 19, 2018.
+
+\bibitem[Wac07]{Wac07}
+Michelle~L. Wachs.
+\newblock Poset topology: {T}ools and applications.
+\newblock In {\em Geometric Combinatorics}, volume~13 of {\em IAS/Park City
+  Math. Ser.}, pages 497--615. Amer. Math. Soc., 2007.
+
+\end{thebibliography}
 \end{document}
