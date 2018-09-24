@@ -49,23 +49,6 @@
 	\end{abstract}
 \end{frontmatter}
 
-\iffalse
-Double check dimension, height, \dim and \h are correct throughout.
-
-Comments to reviewer:
-Changed dimension to height throughout.
-
-Length of chain refers to number of edges and is defined as such when chain is defined in Section 2.1.
-
-Clarified unbounded MF and changed reference to Sagan and Vatter.
-
-The fact that disconnectivity inhibits shellability is well known but I am unable to find a source
-where it is explicitly stated. However, I have added a reference to MS15 where it is mentioned
-for the pure case.
-
-Rewrote proof of Lemma 4.3
-\fi
-
 \section{Introduction}
 Mesh patterns were first introduced by Br\"and\'en and Claesson in \cite{Bra11} as a generalisation
 of permutation patterns, and have been studied extensively in recent years, see e.g.,~\cite{CTU15,JKR15}.
@@ -108,7 +91,7 @@ and $|\sh{p}|$ the size of $\sh{p}$, and define the \emph{length} of $p$ as $|\c
 For example, the mesh pattern $(132,\{(0,0),(0,1),(2,2)\})$,
 or equivalently $132^{(0,0),(0,1),(2,2)}$, has the form:
 \begin{center}
-\patt{0.5}{3}{1,3,2}[0/1,0/0,2/2][][][][][4]
+\patt{0.5}{3}{1,3,2}[0/1,0/0,2/2][][][][][4].
 \end{center}
 
 To define when a mesh pattern occurs within another mesh pattern, we first need to
@@ -261,7 +244,7 @@ Consider any ordering of the maximal chains and let $F_k$, with ${k>1}$, be the 
 every preceding chain belongs to a different component and $F_k$ belongs to a
 nontrivial component. Note that such an $F_k$ exists in every ordering because the interval
 is strongly disconnected, and because $F_k$ belongs to a nontrivial component it must have length
-of at least $1$. So $\left(\cup_{i=1}^{k-1}F_i\right)\cap F_k=\emptyset$,
+at least $1$. So $\left(\cup_{i=1}^{k-1}F_i\right)\cap F_k=\emptyset$,
 which has height $-1\not=(\h(F_k)-1)$. Therefore, the ordering is not a
 shelling.
 \end{proof}
@@ -578,15 +561,17 @@ We claim that $\hat{x}\lessdot\hat{y}$ is an impure edge.
 First note that inserting a letter into an occurrence that uses all the shaded boxes
 creates a new occurrence with the same property.
 Because inserting a point can only create more shaded boxes by splitting previously 
-shaded boxes into two parts. And if 
-a box is used by the occurrence, then the new occurrence uses both parts when it is split.
+shaded boxes into more shaded boxes\footnote{A point inserted in box $(i,j)$ splits
+every box in row $i$ and column $j$ into two boxes, except the box $(i,j)$ itself,
+which splits into four boxes.}. And if 
+a box is used by the occurrence, then the new occurrence uses all parts when it is split.
 
 We show that every occurrence $\hat{\kappa}$ of $\hat{x}$ in $\hat{y}$
 satisfies the conditions of \cref{lem:impureEdge}.
 If $\hat{\kappa}$ contains $t$, then deleting $t$ gives an occurrence $\kappa$ of $x$ in~$y$,
 which we know satisfies the conditions of \cref{lem:impureEdge}. 
 So $\hat{\kappa}$ also satisfies the conditions, as after inserting $t$ into $\kappa$
-the same letter is still being deleted, so merges shaded cells, and we know inserting a point
+the same letter is still being deleted, so merges shaded boxes, and we know inserting a point
 causes the new embedding to use all shaded boxes as well.
 
 If $\hat{\kappa}$ does not contain $t$ 
@@ -605,51 +590,6 @@ satisfies the conditions to be impure.
 The result then follows by induction, as we can sequentially insert points into $y$
 to create a mesh pattern $b$ with $\cl{b}=\cl{p}$, which will cover an element~$a$
 such that $a\lessdot b$ is impure.
-%
-%Suppose $x\lessdot y$ is an impure edge in $[m,p]$. Let $\eta$
-%be an occurrence of~$y$ in $p$,
-%where $j_1,j_2,\ldots,j_t$ are the positions of $y$ not used by $\eta$.
-%Let $i$ be a position of $y$ whose deletion gives $x$.
-%Let $b$ be the mesh pattern with $\cl{b}=\cl{p}$ whose shaded boxes are the those used by $\eta$.
-%Also, let $a$ be the mesh pattern obtained by deleting $\eta_i$ from $b$, that is, the letter of $b$
-%corresponding to $a_i$ according to $\eta$.
-%
-%Define $b^k$ as the mesh pattern obtained by deleting $b_{j_{k+1}},\ldots,b_{j_t}$ from~$b$,
-%and obtain $a_k$ by deleting $\eta_i,b_{j_{k+1}},\ldots,b_{j_t}$ from $b$.
-%So $b^0=y$, $a^0=x$, $b^t=b$ and~$a^t=a$.
-%To get from $b^{k-1}$ to $b^k$ we insert a point $x_k$ into column $j_k$. 
-%And we do a similar operation to get from $a^{k-1}$ to $a^k$.
-%When we insert a point into a cell $c$, we split $c$ into four part
-%and every cell in the same row or column as $c$ is split into two parts.
-%
-%By induction we show that every edge $a^k\lessdot b^k$ satisfies the conditions of \cref{lem:impureEdge}, so is
-%an impure edge. We know that $a^0=x\lessdot y=b^0$ is impure so satisfies the conditions, and assume that
-%$a^{k-1}\lessdot b^{k-1}$ satisfies the conditions.
-%
-%If $\phi$ contains $x_k$, then removing $x_k$ from $\phi$
-%gives an occurrence $\hat{\phi}$ of $a^{k-1}$ in $b^{k-1}$. 
-%Moreover, by the inductive argument $\hat{\phi}$ satisfies the conditions of 
-%\cref{lem:impureEdge}, hence it straightforward to see that $\hat{\phi}$ also satisfies the conditions.
-%
-%If $\phi$ does not contain $x_k$, then deleting $x_k$ from $b^k$ gives
-%$a^k$, which implies $a^k=b^{k-1}$. In which case
-%it follows trivially that any occurrence of $a^k$ in $b^{k-1}$
-%uses all the shaded boxes.
-%When we insert $x_k$ into $a^k$ we cannot create new shaded boxes unless we
-%split a pre-existing shaded box in two, and if a shaded box is being used before we split it
-%then both the new boxes splitting it creates are also used. 
-%This implies that every shaded box is used by $\phi$.
-%
-%Suppose for a contradiction that deleting $x_k$ does not merge boxes.
-%This implies that the number of shaded boxes in $b^k$ and $b^{k-1}$ is the same.
-%However, we know that the other occurrences of $a^k$ in $b^k$ do
-%merge a shaded box when deleting, which implies $b^k$ has more shaded boxes than $b^{k-1}$.
-%This gives a contradiction. Therefore, $\phi$ also
-%satisfies the conditions to be impure.
-%
-%Thus all occurrences of $a^k$ in $b^k$ satisfy the conditions of 
-%\cref{lem:impureEdge}, so~$a^k\lessdot b^k$ is impure.
-%So by induction we get $a=a^t\lessdot b^t=b$ is impure.
 \end{proof}
 \end{lem}
 

@@ -1,0 +1,14 @@
+Double check dimension, height, \dim and \h are correct throughout.
+
+Comments to reviewer:
+Changed dimension to height throughout.
+
+Length of chain refers to number of edges and is defined as such when chain is defined in Section 2.1.
+
+Clarified unbounded MF and changed reference to Sagan and Vatter.
+
+The fact that disconnectivity inhibits shellability is well known but I am unable to find a source
+where it is explicitly stated. However, I have added a reference to MS15 where it is mentioned
+for the pure case.
+
+Rewrote proof of Lemma 4.3

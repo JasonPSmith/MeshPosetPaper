@@ -1,0 +1,83 @@
+Reviewer #1: Mesh patterns are a common generalization of several types of permutation patterns, such as
+classical Wilf patterns, consecutive patterns, or bivincular patterns. As such, mesh patterns find
+frequent applications in describing the combinatorial properties of permutations.
+
+There is a natural way to define a `subpattern' partial order relation on the set of all mesh
+patterns. The aim of this paper is to study the topological properties of this poset. The authors
+motivate this study by pointing out that the poset of mesh patterns contains, as a subposet, the
+poset of permutations ordered by classical containment. The permutation poset is a key object of
+study in combinatorics, and its topology has received a considerable amount of attention lately,
+although many natural problems remain open. The authors therefore suggest that the study of the
+poset of mesh patterns might shed more light on the poset of permutations.
+
+However, the results in this papers by themselves do not yield any new insight into the properties
+of the classical permutation poset. In fact, some of the results in this paper proceed in the
+opposite direction, by pointing out that some earlier results on the permutation poset can be
+generalized to the poset of mesh patterns. <---------------------------------------------------------------- TODO
+
+Here is a brief summary of the main results of the paper. The first substantial result, Corollary
+3.9, shows that asymptotically almost every mesh pattern $p$ satisfies $\mu(1,p)=0$, where $\mu$ is
+the Möbius function of the mesh pattern poset, and $1$ refers to the permutation of size 1. This
+result has no known analogue in the poset of permutations, where there are no known bounds on the
+asymptotic proportion of zeros of the Möbius function. Unfortunately, the method used to prove
+Corollary 3.9 specifically excludes the cases when $p$ is a classical pattern, so the result has no
+direct consequence for the permutation poset.
+
+Another topic, addressed in Section 4, is the combinatorial characterisation of non-pure intervals
+in the poset of mesh patterns. This is an issue which does not arise in the poset of permutations,
+where all intervals are pure (i.e., all maximal chains in the interval have the same length). For
+the poset of mesh patterns, the paper gives a characterisation of the impure intervals of the form
+$[1,p]$ for a general mesh pattern~$p$.
+
+In Section 5, the authors construct examples of strongly disconnected open intervals in the mesh
+pattern poset. The construction is an extension of an analogous previous construction of McNamara
+and Steingrímsson in the permutation poset.
+
+The paper is a collection of several loosely related results, none of which is very difficult by
+itself. As I see it, the main contribution of the paper is in providing an inspiration and a
+foundation for further research in this area. In my opinion, the study of the topological properties
+of the mesh pattern poset, pioneered in this paper, is a meaningful task, and for this reason I
+recommend to accept this paper for publication. <---------------------------------------------------------------- TODO
+
+Although the paper is mostly well written and easy to follow, I have several small
+corrections and suggestions for improvement of the presentation:
+
+Section 1, line 3: mesh pattern consist -> mesh pattern consists
+
+Page 5: the notion of poset dimension defined here is non-standard and therefore confusing. In
+poset theory, dimension typically refers the order dimension (a.k.a. Dushnik-Miller dimension), see
+e.g. Section 1.4 in [Wac07]. I recommend to use term `height', which seems to be the established
+notion for the cardinality of the largest chain, or `rank', used in a similar way by [MS15]. Also,
+if you mention the `length' of a chain, please specify whether the term `length' refers to the
+cardinality (i.e., number of elements), or to the number of edges (i.e., cardinality$-1$).
+
+Page 5: in the definition of shellable complex, $(\dim F_k)$-dimensional should be $(\dim
+F_k-1)$-dimensional.
+
+Page 6: please provide a reference for Lemma 2.3 (and Corollary 2.4). The result seems to already
+appear in [MS15].
+
+Last line of the proof of Lemma 2.3: $\dim(F_k-1)$ should be $(\dim F_k -1)$.
+
+Paragraph below Corollary 2.4: contractable -> contractible.
+
+In Corollary 3.4 and the previous two lines, please specify what you mean by the Möbius function
+being unbounded. Are you considering the general values $\mu(p,q)$, or just the values of the form
+$\mu(1,q)$? If the former, then there are earlier references than [Smi14] showing that $\mu$ is
+unbounded in the permutation poset; it follows at least from the results of Sagan and Vatter (The
+Möbius function of a composition poset, Journal of Algebraic Combinatorics, 24(2), 117-136,
+(2006)), or more explicitly from [BJJS11]. If, on the other hand, you refer here to
+the unboundedness of $\mu(1,q)$, you should state it explicitly.
+
+I am struggling a bit with the proof of Lemma 4.3: in the second paragraph, you write ``the set of
+occurrences of $a$ in $b$ correspond to the set of occurrences of $x$ in $y$, after adding the new
+points''. Is this meant to be a 1-to-1 correspondence? Is it clear that the points added to $y$ to
+create $b$ cannot help to form a new occurrence of $a$ in $b$, that would violate the conditions of
+Lemma 4.2? I would appreciate more details in this proof.
+
+Page 13, last paragraph of Section 4: `Although' should perhaps be `Moreover'.
+
+Page 14, line -2: can be consider -> can be considered
+
+Page 15, line 6 of the proof of Lemma 5.4: $(m_{cl},m\oplus m_{cl})$ should probably be $(m,m\oplus
+m)$.
