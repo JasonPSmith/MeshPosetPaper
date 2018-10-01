@@ -1,14 +1,16 @@
-Double check dimension, height, \dim and \h are correct throughout.
+Dear Reviewer,
 
-Comments to reviewer:
-Changed dimension to height throughout.
+We have corrected the mistakes you pointed out, and outlined the changes below.
 
-Length of chain refers to number of edges and is defined as such when chain is defined in Section 2.1.
+We replaced dimension with height throughout the paper. The length of a chain is defined in Section 2.1, and we added an extra line to clarify that it is one less than the number of elements.
 
-Clarified unbounded MF and changed reference to Sagan and Vatter.
+The fact that disconnectivity inhibits shellability is well known but we are unable to find a source where it is explicitly stated. However, we have added a reference to MS15 where it is mentioned for the pure case.
 
-The fact that disconnectivity inhibits shellability is well known but I am unable to find a source
-where it is explicitly stated. However, I have added a reference to MS15 where it is mentioned
-for the pure case.
+We clarified what we mean by the Mobius function being unbounded, and changed the reference to Sagan and Vatter.
 
-Rewrote proof of Lemma 4.3
+There was an error in the proof of Lemma 4.3. So it has been completely rewritten with a new argument.
+
+We corrected the typographical errors.
+
+Best,
+Jason Smith and Henning Ulfarsson
