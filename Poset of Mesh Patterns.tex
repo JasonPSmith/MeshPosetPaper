@@ -204,7 +204,8 @@ In a poset we say that $\alpha$ \emph{covers} $\beta$, denoted $\alpha\gtrdot\be
 and there is no $\kappa$ such that $\alpha>\kappa>\beta$. A \emph{chain} of length $k$ in a poset is
 a totally ordered subset $c_1<c_2<\cdots<c_{k+1}$, so the length of a chain is one less
 than its number of elements. A chain is \emph{maximal} if $c_i\lessdot c_{i+1}$,
-for all $1\le i \le k$. A poset is \emph{pure} (also known as \emph{ranked}) if all
+for all $1\le i \le k$, and $c_1$ and $c_{k+1}$ are minimal and maximal elements of the poset, respectively.
+A poset is \emph{pure} (also known as \emph{ranked}) if all
 maximal chains have the same length. The \emph{height} of a poset $P$, denoted $\h(P)$, is the
 length of the longest maximal chain. For example, the interval in \cref{fig:intEx} is nonpure because
 there is one maximal chain of length $3$ ($\pattin{1}{1}{}\lessdot\pattin{1}{1}{0/1}\lessdot
@@ -506,7 +507,8 @@ use the point $x$. An occurrence $\eta$ of $m$ in $p$ \emph{uses the shaded box 
 if $(a,b)\in R_\eta(i,j)$ for some shaded box $(i,j)\in\sh{m}$. We say that
 deleting a point $x$ \emph{merges shadings} if
 there is a shaded box in $\mX{m}{x}$ that corresponds to more than one shaded box in
-$\occX{m}{x}$, see \cref{fig:impEx}.
+$\occX{m}{x}$, see \cref{fig:impEx}. Also note that if deleting a point merges an unshaded box with a
+shaded box then the resulting box will be unshaded.
 
 \begin{lem}\label{lem:impureEdge}
 Two mesh patterns $m<p$ form an impure edge if and only if all occurrences of $m$ in
@@ -548,14 +550,36 @@ but $\mX{b}{x}<b$ is not an impure edge because there is a second occurrence of 
 that does not use all the shaded boxes in $b$.}\label{fig:impEx}
 \end{figure}
 
+\begin{lem}\label{lem:consecDel}
+Consider a mesh pattern $m$, if deleting a point $i$ only removes shaded boxes by merging shaded boxes, then the set of points 
+whose deletion gives the same mesh pattern as $i$ is a consecutive block where the each point when deleted also merges boxes in the same row, and these merged boxes form a consecutive block. 
+\begin{proof}
+Let $j$ be a position whose deletion gives the same mesh pattern as the deletion of $i$, and WLOG let $j<i$. Suppose there
+is a position $z$ with $j<z<i$ and deleting $z$ gives a different mesh pattern.
+
+Note that any pair of shaded boxes that deleting $m_i$ and $m_j$ must remove the same number of shaded boxes, either by merging
+or deletion. I deleting $m_i$ merges boxes in row/column i, then deleting $m_j$ must also merge boxes in the same row/column and 
+all boxes between these pairs of boxes must also be shaded, otherwise there is a non shaded boxes in a different position depending on
+whether you merge boxes to left or right of it. This implies that deleting $m_z$ also merges boxes in the row/column. So any row/column
+where boxes are merged is going to be exactly the same when deleting $m_z$ as when deleting $m_i$ or $m_j$.
+
+Also note that when deleting $m_i$ and $m_j$ we can only remove shaded boxes by merging, unless $i=j-1$. 
+This is because otherwise the shaded box removed by deleting $m_i$ is not present after deleting $m_i$ but is present after deleting
+$m_j$ unless the box is removed by deleting both $m_i$ and $m_j$. Moreover, we cannot delete a shaded box when deleting $m_z$ otherwise this shaded box will be in a row one less when we delete $m_i$ instead of $m_j$, which contradicts their deletion giving the same mesh pattern. 
+
+Therefore, deleting $m_z$ only removes shaded boxes by merging and it merges boxes from the same consecutive blocks as $m_i$ and $m_j$ which implies its deleton gives the same mesh pattern as the deletion of $m_i$ and $m_j$.
+\end{proof}
+\end{lem}
+
 \begin{lem}\label{lem:topImpure}
 If $[m,p]$ contains an impure edge, then it contains an impure edge
 $a\lessdot b$ where $\cl{b}=\cl{p}$.
 \begin{proof}
-Suppose $x\lessdot y$ is an impure edge in $[m,p]$, and let $\eta$ be an occurrence of $x$ in $y$.
+Suppose $x\lessdot y$ is an impure edge in $[m,p]$, and let $\eta$ be an occurrence of $x$ in $y$, with $a$ the letter $y$ not in $\eta$.
 Let $\hat{\eta}$ be an occurrence of $\hat{x}$ in $\hat{y}$,
 where $\hat{y}$ is obtained by inserting some letter $t$ into $y$, then $\hat{\eta}$ is obtained by inserting 
-$t$ into the same place in~$\eta$, and~$\hat{\eta}$ uniquely determines $\hat{x}$.
+$t$ into the same place in~$\eta$, and~$\hat{x}$ is obtained by inserting a letter $s$ into $x$ whose
+position and value is uniquely determined by~\hat{\eta}.
 We claim that $\hat{x}\lessdot\hat{y}$ is an impure edge.
 
 First note that inserting a letter into an occurrence that uses all the shaded boxes
@@ -567,25 +591,9 @@ which splits into four boxes.}. And if
 a box is used by the occurrence, then the new occurrence uses all parts when it is split.
 
 We show that every occurrence $\hat{\kappa}$ of $\hat{x}$ in $\hat{y}$
-satisfies the conditions of \cref{lem:impureEdge}.
-If $\hat{\kappa}$ contains $t$, then deleting $t$ gives an occurrence $\kappa$ of $x$ in~$y$,
-which we know satisfies the conditions of \cref{lem:impureEdge}. 
-So $\hat{\kappa}$ also satisfies the conditions, as after inserting $t$ into $\kappa$
-the same letter is still being deleted, so merges shaded boxes, and we know inserting a point
-causes the new embedding to use all shaded boxes as well.
-
-If $\hat{\kappa}$ does not contain $t$ 
-then deleting $t$ from $\hat{y}$ gives
-$\hat{x}$, which implies~$\hat{x}=y$.
-It follows trivially that any occurrence of $\hat{x}$ in $y$
-uses all the shaded boxes, and $\hat{\kappa}$ is obtained by inserting a point into
-an embedding of $\hat{x}$ in $y$, thus $\hat{\kappa}$ uses all the shaded boxes. 
-Suppose for a contradiction that deleting $t$ does not merge boxes.
-This implies that the number of shaded boxes in $\hat{y}$ and~$\hat{x}$ is the same.
-However, we know that the other occurrences of $\hat{x}$ in $\hat{y}$ do
-merge a shaded box when deleting, which implies $\hat{y}$ has more shaded boxes than~$\hat{x}$.
-This gives a contradiction. Therefore, $\hat{\kappa}$
-satisfies the conditions to be impure.
+satisfies the conditions of \cref{lem:impureEdge}. This follows from \cref{lem:consecDel} because it is true for 
+the $\hat{\eta}$ so must be true for all of $\hat{\kappa}$ as there are equivalent to deleting a letter that 
+gives the same sub mesh pattern.
 
 The result then follows by induction, as we can sequentially insert points into $y$
 to create a mesh pattern $b$ with $\cl{b}=\cl{p}$, which will cover an element~$a$
@@ -596,14 +604,18 @@ such that $a\lessdot b$ is impure.
 \begin{prop}
 The interval $[1^\emptyset,m]$ is non-pure if and
 only if there exists a point $x$ in $m$ whose deletion merges shadings and
-there is no other occurrence of $\mX{m}{x}$ in $m$ which uses a subset of the shadings
-used by $\occX{m}{x}$.
+there is no other occurrence of $\mX{m}{x}$ in $m$ which uses a proper subset of the shadings
+used by~$\occX{m}{x}$.
 \begin{proof}
 First we show the backwards direction. Let $t$  be the mesh pattern obtained by
-inserting~$x$ back into $\mX{m}{x}$, and $\phi$ the corresponding occurrence of $\mX{m}{x}$
-in $t$. Note that there are no other occurrences of $\mX{m}{x}$ in $t$ because there is
-no occurrence of $\mX{m}{x}$ in $m$ which uses a subset of the shadings
-used by $\occX{m}{x}$. Therefore, by Lemma~\ref{lem:impureEdge} we get that
+inserting~$x$ back into $\mX{m}{x}$, and $\phi$ the corresponding occurrence of~$\mX{m}{x}$
+in $t$. Note that $\phi$ and $\occX{m}{x}$ use the same set of shadings,
+but $m$ may have more shaded boxes than $t$.
+We know that deleting $x$ from $m$ merges shadings, which implies that $\phi$ uses all the
+shaded boxes of $t$. 
+Also note that any other occurrences of $\mX{m}{x}$ in $t$ must also use all of the shaded boxes
+because there is no occurrence of $\mX{m}{x}$ in $m$ which uses a proper subset of the shadings
+used by $\phi$. Therefore, by Lemma~\ref{lem:impureEdge} we get that
 $\mX{m}{x}\lessdot t$ is an impure edge.
 
 To see the other direction suppose there is an impure edge in $[1^{\emptyset},m]$. By
@@ -740,7 +752,9 @@ of $\eta_1$ and $\eta_2$, so if we deshade a box the resulting pattern $x$ conta
 either the first or last $|m|$ letters. Let $Q_1$ and $Q_2$ be sets of patterns with underlying permutation
 $\cl{m}\oplus \cl{m}$ where the first and last $|m|$ letters are the only occurrence of $m$, respectively. So any
 element $Q_1$ cannot contain an element in $P_2\cup Q_2$ and similarly any element of $Q_2$ cannot
-contain an element of ${P_1\cup Q_1}$. Therefore, $P_1\cup Q_1$ and $P_2\cup Q_2$ are disconnected
+contain an element of ${P_1\cup Q_1}$. Finally, note that $P_1\cup Q_1$ is a connected component as it has the minimal element
+$\cl{m}\oplus1$, similarly $P_2\cup Q_2$ is connected as it has the minimal element $1\oplus\cl{m}$.
+Therefore, $P_1\cup Q_1$ and $P_2\cup Q_2$ are disconnected
 nontrivial components of $[m,m\oplus m]$.
 \end{proof}
 \end{lem}
