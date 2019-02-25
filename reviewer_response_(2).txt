@@ -1,0 +1,23 @@
+Dear Reviewer,
+
+Our apologies for the delay in submitting the revision. We have addressed
+the issues you raised and outlined the changed below.
+
+The issue in the third paragraph of the proof of Lemma 4.3 was a problem with the proof
+(and the main reason for the delay in the revision). To fix this problem we introduced 
+a new lemma before Lemma 4.3 which addresses this. We also rewrote the proof of Lemma 4.3 (now 4.4)
+which address the second problem raised about the proof.
+
+Proposition 4.4 (now 4.5) should indeed read proper subset. We have changed this and
+altered the first paragraph of the proof to address this.
+
+We added a comment on page 5 that c_1 and c_{k_1} should be minimal and maximal elements.
+
+On page 11 we expanded on the comment about deleting elements and merging boxes, and we
+introduced some terminology used in the new proofs of Lemma 4.4 and 4.5
+
+Added a comment to proof of Lemma 5.4 that P_1\cup Q_1 and P_2\cup Q_2 are connected.
+
+
+Best,
+Jason Smith and Henning Ulfarsson

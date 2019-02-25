@@ -508,7 +508,23 @@ if $(a,b)\in R_\eta(i,j)$ for some shaded box $(i,j)\in\sh{m}$. We say that
 deleting a point $x$ \emph{merges shadings} if
 there is a shaded box in $\mX{m}{x}$ that corresponds to more than one shaded box in
 $\occX{m}{x}$, see \cref{fig:impEx}. Also note that if deleting a point merges an unshaded box with a
-shaded box then the resulting box will be unshaded.
+shaded box then the resulting box will be unshaded, so we say deleting that point \emph{removes shadings}.
+Note that is is possible that deleting a point both merges and removes shadings.
+We define a \emph{block} of shaded boxes to be a consecutive sequence of shaded boxes in the same row or column.
+
+\begin{figure}\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\centering\colpatt{0.5}{2}{1,2}[0/2,1/2][2/2][0/2,1/2]
+\caption*{$a=12^{(0,2),(1,2)}$}\label{subfig:a}\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\centering\colpatt{0.5}{3}{1,2,3}[1/3,2/3][1/1,3/3][1/3,2/3]
+\caption*{$b=123^{(1,3),(2,3)}$}\label{subfig:b}\end{subfigure}
+\caption{Two mesh patterns with a point $x$ in black whose deletion merges shadings and the occurrences
+$\occX{a}{x}$ and $\occX{b}{x}$ in red. By \cref{lem:impureEdge} $\mX{a}{x}\lessdot a$ is impure,
+but $\mX{b}{x}<b$ is not an impure edge because there is a second occurrence of $\mX{b}{x}$ in $b$, using points $23$,
+that does not use all the shaded boxes in $b$.}\label{fig:impEx}
+\end{figure}
+
 
 \begin{lem}\label{lem:impureEdge}
 Two mesh patterns $m<p$ form an impure edge if and only if all occurrences of $m$ in
@@ -537,37 +553,43 @@ that does not use all the shaded boxes of $p$, we can deshade the box it doesn't
 use and get an element that lies between $m$ and $p$.
 \end{proof}
 
-\begin{figure}\centering
-\begin{subfigure}[b]{0.3\textwidth}
-\centering\colpatt{0.5}{2}{1,2}[0/2,1/2][2/2][0/2,1/2]
-\caption*{$a=12^{(0,2),(1,2)}$}\label{subfig:a}\end{subfigure}
-\begin{subfigure}[b]{0.3\textwidth}
-\centering\colpatt{0.5}{3}{1,2,3}[1/3,2/3][1/1,3/3][1/3,2/3]
-\caption*{$b=123^{(1,3),(2,3)}$}\label{subfig:b}\end{subfigure}
-\caption{Two mesh patterns with a point $x$ in black whose deletion merges shadings and the occurrences
-$\occX{a}{x}$ and $\occX{b}{x}$ in red. By \cref{lem:impureEdge} $\mX{a}{x}\lessdot a$ is impure,
-but $\mX{b}{x}<b$ is not an impure edge because there is a second occurrence of $\mX{b}{x}$ in $b$, using points $23$,
-that does not use all the shaded boxes in $b$.}\label{fig:impEx}
-\end{figure}
-
-\begin{lem}\label{lem:consecDel}
-Consider a mesh pattern $m$, if deleting a point $i$ only removes shaded boxes by merging shaded boxes, then the set of points 
-whose deletion gives the same mesh pattern as $i$ is a consecutive block where the each point when deleted also merges boxes in the same row, and these merged boxes form a consecutive block. 
+\begin{lem}\label{lem:adj}
+Suppose that deleting positions $i$ or $j$ from $m$ gives the same mesh pattern $p$, and their deletion does not remove shaded boxes.
+Then deleting any position $k$ from $m$, with $i\le k\le j$, also gives $p$ and does not remove any shaded boxes.
+Moreover, deleting $i$ and $k$ gives the same mesh pattern as deleting $k$ and $j$.
 \begin{proof}
-Let $j$ be a position whose deletion gives the same mesh pattern as the deletion of $i$, and WLOG let $j<i$. Suppose there
-is a position $z$ with $j<z<i$ and deleting $z$ gives a different mesh pattern.
+Let $m_x$ be the value of the point in position~$x$ of~$m$, and assume~$m_i<m_j$, the case for~$m_i>m_j$ is analogous.
+ It is well known that deleting two letters from a permutation gives the same subpermutation if and only if they are part
+ of the same \emph{adjacency}, that is, sequence of consecutively valued letters in consecutive positions, see \cite{Smith15}. So if deleting~$i$ and
+ $j$ gives the same mesh pattern they must be part of the same adjacency, so~$k$ must also be part of the same adjacency,
+ hence deleting $k$ gives the same underlying permutation, and~$m_i<m_k<m_j$.
+ It remains to show that deleting~$k$ results in the same shaded boxes as deleting $i$ or $j$. We prove the following claim:
+ For every column~$c$ (resp. row~$r$) the boxes~$(c,m_x)$ (resp.~$(x,r)$) are either all shaded or all unshaded, for~$i-1\le x\le j$.
+ Which is equivalent to saying that every row~$\pi_i-1\le r\le \pi_j$ has exactly the same shaded boxes, and every column~$i-1\le c\le j$ has exactly the same shaded boxes.
 
-Note that any pair of shaded boxes that deleting $m_i$ and $m_j$ must remove the same number of shaded boxes, either by merging
-or deletion. I deleting $m_i$ merges boxes in row/column i, then deleting $m_j$ must also merge boxes in the same row/column and 
-all boxes between these pairs of boxes must also be shaded, otherwise there is a non shaded boxes in a different position depending on
-whether you merge boxes to left or right of it. This implies that deleting $m_z$ also merges boxes in the row/column. So any row/column
-where boxes are merged is going to be exactly the same when deleting $m_z$ as when deleting $m_i$ or $m_j$.
+First we consider any column~$c<i-1$. If deleting~$i$ or~$j$ removes a shaded boxes then this is true for both~$i$ and~$j$,
+ otherwise column $a$ in the resulting mesh patterns would have differing number of shaded boxes. If deleting neither~$i$ nor~$j$ merges boxes,
+ then there cannot be a shaded box~$(c,x)$ with~$m_i<x<m_j-1$. To see this suppose~$(c,x)$ is the lowest such shaded box, then deleting~$i$
+ causes~$(c,x-1)$ to be shaded, but~$(c,x-1)$ is unshaded after deleting~$j$. A similar argument shows there cannot be an unshaded box~$(c,x)$ with~$m_i<x<m_j-1$
+ if deleting $i$ and $j$ merge shadings. Analogous arguments prove the same is true for any column~$c>j$, row~$r<m_i-1$ or row~$r>m_j$.
 
-Also note that when deleting $m_i$ and $m_j$ we can only remove shaded boxes by merging, unless $i=j-1$. 
-This is because otherwise the shaded box removed by deleting $m_i$ is not present after deleting $m_i$ but is present after deleting
-$m_j$ unless the box is removed by deleting both $m_i$ and $m_j$. Moreover, we cannot delete a shaded box when deleting $m_z$ otherwise this shaded box will be in a row one less when we delete $m_i$ instead of $m_j$, which contradicts their deletion giving the same mesh pattern. 
+It remains to consider the rectangle given by the boxes~$(c,r)$ with~$i-1\le c\le j$ and~$\pi_i-1\le r\le\pi_j$,
+ for which the claim is equivalent to saying this rectangle is either all shaded or all unshaded. 
+ Note that deleting $i$ causes any box in this rectangle to be shifted down and left.
+ So if~$(a,b)$ is shaded, then~$(a-1,b-1)$ and~$(a+1,b+1)$ are also shaded,
+ thus all boxes in that diagonal line within the rectangle are shaded.
+ The north east most pair~$(x-1,y-1)$ and~$(x,y)$ of this diagonal are either in columns~$j-1$ and~$j$ or rows~$m_j-1$ and~$m_j$, and are shaded.
+ Therefore, the boxes~$(x,y-1)$ and~$(x-1,y)$ are also shaded since deleting~$j$ does not remove shaded boxes.
+ So the diagonals containing these two boxes, which are the ones above and below the original diagonal, are also fully shaded.
+ Thus by induction every diagonal is fully shaded, so the whole rectangle is fully shaded.
+ This completes the proof of the claim.
 
-Therefore, deleting $m_z$ only removes shaded boxes by merging and it merges boxes from the same consecutive blocks as $m_i$ and $m_j$ which implies its deleton gives the same mesh pattern as the deletion of $m_i$ and $m_j$.
+So deleting any point 
+ $i\le k\le j$ cannot remove shaded boxes, as that would imply there is a row or column with neighbouring shaded and unshaded boxes between points $i$ and $j$.
+ Moreover, deleting $k$ is equivalent merging two identical rows and two identical columns, which is the same as removing one row and one column,
+ and as all the rows and columns are the same we end up with the same shadings
+ irrelevant of which is removed. Furthermore, deleting any pair of points is equivalent to deleting any two rows and two columns,
+ which results in the same mesh pattern, which proves the final part of the Lemma.
 \end{proof}
 \end{lem}
 
@@ -575,29 +597,40 @@ Therefore, deleting $m_z$ only removes shaded boxes by merging and it merges box
 If $[m,p]$ contains an impure edge, then it contains an impure edge
 $a\lessdot b$ where $\cl{b}=\cl{p}$.
 \begin{proof}
-Suppose $x\lessdot y$ is an impure edge in $[m,p]$, and let $\eta$ be an occurrence of $x$ in $y$, with $a$ the letter $y$ not in $\eta$.
-Let $\hat{\eta}$ be an occurrence of $\hat{x}$ in $\hat{y}$,
-where $\hat{y}$ is obtained by inserting some letter $t$ into $y$, then $\hat{\eta}$ is obtained by inserting 
-$t$ into the same place in~$\eta$, and~$\hat{x}$ is obtained by inserting a letter $s$ into $x$ whose
-position and value is uniquely determined by~\hat{\eta}.
-We claim that $\hat{x}\lessdot\hat{y}$ is an impure edge.
+First note that inserting a point into a mesh pattern can only create more shaded boxes by splitting previously 
+ shaded boxes\footnote{A point inserted in box $(i,j)$ splits
+ every box in row $i$ and column $j$ into two boxes, except the box $(i,j)$ itself,
+ which splits into four boxes.}. So inserting a letter into an occurrence that uses all the shaded boxes
+ creates a new occurrence with the same property.
 
-First note that inserting a letter into an occurrence that uses all the shaded boxes
-creates a new occurrence with the same property.
-Because inserting a point can only create more shaded boxes by splitting previously 
-shaded boxes into more shaded boxes\footnote{A point inserted in box $(i,j)$ splits
-every box in row $i$ and column $j$ into two boxes, except the box $(i,j)$ itself,
-which splits into four boxes.}. And if 
-a box is used by the occurrence, then the new occurrence uses all parts when it is split.
+Suppose $x\lessdot y$ is an impure edge in $[m,p]$, and let $\eta$ be an occurrence of~$x$ in~$y$.
+ Let $\hat{\eta}$ be an occurrence of $\hat{x}$ in $\hat{y}$,
+ where $\hat{y}$ is obtained by inserting some letter $t$ into $y$, then $\hat{\eta}$ is obtained by inserting 
+ $t$ into $\eta$, and~$\hat{x}$ is uniquely determined by~$\hat{\eta}$.
+ Given any occurrence $\psi$ of~$x$ in $y$ (resp. $\hat{x}$ in $\hat{y}$) let~$m(\psi)$ be the letter deleted from $y$ (resp. $\hat{y}$) to get~$\psi$.
+ We show that every occurrence~$\hat{\psi}$ of $\hat{x}$ in $\hat{y}$ uses all the shaded boxes.
 
-We show that every occurrence $\hat{\kappa}$ of $\hat{x}$ in $\hat{y}$
-satisfies the conditions of \cref{lem:impureEdge}. This follows from \cref{lem:consecDel} because it is true for 
-the $\hat{\eta}$ so must be true for all of $\hat{\kappa}$ as there are equivalent to deleting a letter that 
-gives the same sub mesh pattern.
+If $\hat{\psi}$ contains $t$, we show that removing $t$ 
+ from $\hat{\psi}$ gives an occurrence~$\psi$ of~$x$ in~$y$. Note that removing $t$ from $\hat{y}$ gives $y$ by construction. 
+ If $m(\hat{\psi})$ and $m(\hat{\eta})$ are both before $t$ or both after $t$, then $t$ appears as the same letter of $\hat{x}$ in both occurrences,
+ and removing $t$ from $\hat{\eta}$ gives
+ an occurrence of $x$, so the same must be true for $\hat{\psi}$. If $t$ is between $m(\hat{\psi})$ and $m(\hat{\eta})$, then by \cref{lem:adj}
+ deleting $m(\hat{\psi})$ and $t$ gives the same mesh pattern as deleting $m(\hat{\eta})$ and $t$, which is $x$.
+ So~$\psi$ is an occurrence of~$x$ in~$y$ that uses all the shaded boxes, hence $\hat{\psi}$ also uses
+ all the shaded boxes by the first paragraph.
+ If $\hat{\psi}$ does not contain~$t$, then $\hat{x}=y$. Again the first paragraph
+ we know that $\hat{\psi}$ must use all the shaded boxes, because $\hat{y}$ is constructed by inserting~$t$ into $y$.
 
-The result then follows by induction, as we can sequentially insert points into $y$
-to create a mesh pattern $b$ with $\cl{b}=\cl{p}$, which will cover an element~$a$
-such that $a\lessdot b$ is impure.
+Now we show that deleting $m(\hat{\psi})$ merges shaded boxes. Deleting $m(\hat{\psi})$ or $m(\hat{\eta})$ gives $\hat{x}$,
+ so the resulting number of shaded boxes must be the same after deleting either, and we know that deleting $m(\hat{\eta})$
+ merges shaded boxes by construction, so the number of shaded boxes must decrease.
+ Moreover, as~$\hat{\psi}$ uses all the shaded boxes the only way to decrease the number of shaded boxes is to merge them. 
+ 
+So all occurrences of $\hat{x}$ in $\hat{y}$ satisfy
+ the conditions of \cref{lem:impureEdge}, hence $\hat{x}\lessdot\hat{y}$ is an impure edge.
+ The result then follows by induction, as we can sequentially insert points into $y$
+ to create a mesh pattern $b$ with $\cl{b}=\cl{p}$, which will cover an element~$a$
+ such that $a\lessdot b$ is impure.
 \end{proof}
 \end{lem}
 
