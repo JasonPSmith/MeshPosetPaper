@@ -571,7 +571,7 @@ Let $m_x$ be the value of the point in position~$x$ of~$m$, and assume~$m_i<m_j$
  Which is equivalent to saying that every row~$\pi_i-1\le r\le \pi_j$ has exactly the same shaded boxes, and every column~$i-1\le c\le j$ has exactly the same shaded boxes.
 
 First we consider a column~$c<i-1$. If deleting~$i$ or~$j$ removes a shaded boxes then this is true for both~$i$ and~$j$,
- otherwise column $a$ in the resulting mesh patterns would have differing number of shaded boxes. If deleting neither~$i$ nor~$j$ merges boxes,
+ otherwise column $a$ in the resulting mesh patterns would have differing number of shaded boxes. If the deletion of i or j does not merge boxes,
  then there cannot be a shaded box~$(c,x)$ with~$m_i<x<m_j-1$. To see this suppose~$(c,x)$ is the lowest such shaded box, then deleting~$i$
  causes~$(c,x-1)$ to be shaded, but~$(c,x-1)$ is unshaded after deleting~$j$. A similar argument shows there cannot be an unshaded box~$(c,x)$ with~$m_i<x<m_j-1$
  if deleting $i$ and $j$ merge shadings. Analogous arguments prove the same is true for any column~$c>j$, row~$r<m_i-1$ or row~$r>m_j$.
@@ -602,7 +602,7 @@ $a\lessdot b$ where $\cl{b}=\cl{p}$.
 First note that inserting a point into a mesh pattern can only create more shaded boxes by splitting previously 
  shaded boxes\footnote{A point inserted in box $(i,j)$ splits
  every box in row $i$ and column $j$ into two boxes, except the box $(i,j)$ itself,
- which splits into four boxes.}. So inserting a letter into (a non-shaded box in)
+ which splits into four boxes.}. So inserting a letter into
  an occurrence that uses all the shaded boxes
  creates a new occurrence, of a longer pattern, with the same property.
 

@@ -18,22 +18,5 @@ introduced some terminology used in the new proofs of Lemma 4.4 and 4.5
 
 Added a comment to proof of Lemma 5.4 that P_1\cup Q_1 and P_2\cup Q_2 are connected.
 
-TODO: Should we give a more direct ref to a particular statement in Smith15 in
-the proof of Lemma 4.13?
-
-TODO: Page 12, line -5: "If deleting neither i nor j merges boxes". Should this
-be "If the deletion of i or j does not merge boxes" or something similar? I'm
-a bit confused ;).
-
-TODO: Second sentence of the proof of Lemma 4.4: I changed it to
-
-"So inserting a letter into (a non-shaded box in)
- an occurrence that uses all the shaded boxes
- creates a new occurrence, of a longer pattern, with the same property."
-
-This is what we mean, right?
-
-
-
 Best,
 Jason Smith and Henning Ulfarsson
