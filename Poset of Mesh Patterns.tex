@@ -567,8 +567,15 @@ Let $m_x$ be the value of the point in position~$x$ of~$m$, and assume~$m_i<m_j$
  $j$ gives the same mesh pattern they must be part of the same adjacency, so~$k$ must also be part of the same adjacency,
  hence deleting $k$ gives the same underlying permutation, and~$m_i<m_k<m_j$.
  It remains to show that deleting~$k$ results in the same shaded boxes as deleting $i$ or $j$. We prove the following claim:
- For every column~$c$ (resp. row~$r$) the boxes~$(c,m_x)$ (resp.~$(x,r)$) are either all shaded or all unshaded, for~$i-1\le x\le j$.
- Which is equivalent to saying that every row~$\pi_i-1\le r\le \pi_j$ has exactly the same shaded boxes, and every column~$i-1\le c\le j$ has exactly the same shaded boxes.
+ \begin{equation*}
+  \begin{tabular}{c}
+   If deleting positions $i$ or $j$ from $m$ gives the same mesh pattern $p$,\\
+   and their deletion does not remove shaded boxes, then for every\\ column~$c$
+   (resp. row~$r$) the boxes~$(c,m_x)$ (resp.~$(x,r)$) are either\\ all shaded or all unshaded, for~$i-1\le x\le j$.
+  \end{tabular}
+ \end{equation*}
+ Note that the implication of the claim is equivalent to saying that every row~$\pi_i-1\le r\le \pi_j$ has exactly the same shaded boxes,
+ and every column~$i-1\le c\le j$ has exactly the same shaded boxes.
 
 First we consider a column~$c<i-1$. If deleting~$i$ or~$j$ removes a shaded boxes then this is true for both~$i$ and~$j$,
  otherwise column $a$ in the resulting mesh patterns would have differing number of shaded boxes. If the deletion of i or j does not merge boxes,
@@ -589,7 +596,7 @@ It remains to consider the rectangle given by the boxes~$(c,r)$ with~$i-1\le c\l
 
 So deleting any point 
  $i\le k\le j$ cannot remove shaded boxes, as that would imply there is a row or column with neighbouring shaded and unshaded boxes between points $i$ and $j$.
- Moreover, deleting $k$ is equivalent merging two identical rows and two identical columns, which is the same as removing one row and one column,
+ Moreover, deleting $k$ is equivalent to merging two identical rows and two identical columns, which is the same as removing one row and one column,
  and as all the rows and columns are the same we end up with the same shadings
  irrelevant of which is removed. Furthermore, deleting any pair of points is equivalent to deleting any two rows and two columns,
  which results in the same mesh pattern, which proves the final part of the lemma.
@@ -617,11 +624,15 @@ If $\hat{\psi}$ contains $t$, we show that removing $t$
  from $\hat{\psi}$ gives an occurrence~$\psi$ of~$x$ in~$y$. Note that removing $t$ from $\hat{y}$ gives $y$ by construction. 
  If $m(\hat{\psi})$ and $m(\hat{\eta})$ are both before $t$ or both after $t$, then $t$ appears as the same letter of $\hat{x}$ in both occurrences,
  and removing $t$ from $\hat{\eta}$ gives
- an occurrence of $x$, so the same must be true for $\hat{\psi}$. If $t$ is between $m(\hat{\psi})$ and $m(\hat{\eta})$, then by \cref{lem:adj}
+ an occurrence of $x$, so the same must be true for $\hat{\psi}$. If $t$ is between $m(\hat{\psi})$ and $m(\hat{\eta})$, 
+ then note that deleting either $m(\hat{\psi})$ or $m(\hat{\eta})$ gives $\hat{x}$, since both $\hat{\psi}$ and
+ $\hat{\eta}$ are occurrences of $\hat{x}$ in $\hat{y}$. So by \cref{lem:adj}
  deleting $m(\hat{\psi})$ and $t$ gives the same mesh pattern as deleting $m(\hat{\eta})$ and $t$, which is $x$.
  So~$\psi$ is an occurrence of~$x$ in~$y$ that uses all the shaded boxes, hence $\hat{\psi}$ also uses
  all the shaded boxes by the first paragraph.
- If $\hat{\psi}$ does not contain~$t$, then $\hat{x}=y$. Again, by the first paragraph
+ If $\hat{\psi}$ does not contain $t$, then as $|\hat{x}|=|\hat{y}-1|$ we know that $t$ is the only letter not contained in $\hat{\psi}$,
+ which implies that deleting $t$ from $\hat{y}$ gives	
+ $\hat{x}$. Moreover, by the definition of $\hat{y}$ we know that deleting $t$ from $\hat{y}$ gives $y$, so~$\hat{x}=y$. Again, by the first paragraph
  we know that $\hat{\psi}$ must use all the shaded boxes, because $\hat{y}$ is constructed by inserting~$t$ into $y$.
 
 Now we show that deleting $m(\hat{\psi})$ merges shaded boxes. Deleting $m(\hat{\psi})$ or $m(\hat{\eta})$ gives $\hat{x}$,
