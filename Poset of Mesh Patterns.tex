@@ -510,7 +510,7 @@ deleting a point $x$ \emph{merges shadings} if
 there is a shaded box in $\mX{m}{x}$ that corresponds to more than one shaded box in
 $\occX{m}{x}$, see \cref{fig:impEx}. Also note that if deleting a point merges an unshaded box with a
 shaded box then the resulting box will be unshaded, so we say deleting that point \emph{removes shadings}.
-Note that is is possible that deleting a point both merges and removes shadings.
+Note that it is possible that deleting a point both merges and removes shadings.
 We define a \emph{block} of shaded boxes to be a consecutive sequence of shaded boxes in the same row or column.
 
 \begin{figure}\centering
@@ -578,8 +578,8 @@ Let $m_x$ be the value of the point in position~$x$ of~$m$, and assume~$m_i<m_j$
  Note that the implication of the claim is equivalent to saying that every row~$\pi_i-1\le r\le \pi_j$ has exactly the same shaded boxes,
  and every column~$i-1\le c\le j$ has exactly the same shaded boxes.
 
-First we consider a column~$c<i-1$. If deleting~$i$ or~$j$ removes a shaded boxes then this is true for both~$i$ and~$j$,
- otherwise column $a$ in the resulting mesh patterns would have differing number of shaded boxes. If the deletion of $i$ or $j$ does not merge boxes,
+First we consider a column~$c<i-1$. If deleting~$i$ or~$j$ merges shaded boxes then this is true for both~$i$ and~$j$,
+ otherwise column $c$ in the resulting mesh patterns would have differing number of shaded boxes. If the deletion of $i$ or $j$ does not merge boxes,
  then there cannot be a shaded box~$(c,x)$ with~$m_i<x<m_j-1$. To see this suppose~$(c,x)$ is the lowest such shaded box, then deleting~$i$
  causes~$(c,x-1)$ to be shaded, but~$(c,x-1)$ is unshaded after deleting~$j$. A similar argument shows there cannot be an unshaded box~$(c,x)$ with~$m_i<x<m_j-1$
  if deleting $i$ and $j$ merge shadings. Analogous arguments prove the same is true for any column~$c>j$, row~$r<m_i-1$ or row~$r>m_j$.
