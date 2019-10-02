@@ -6,6 +6,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{shapes,patterns}
 \hypersetup{colorlinks}
+\usepackage{todonotes}
 
 \newtheorem{thm}{Theorem}\crefname{thm}{Theorem}{Theorems}
 \newtheorem{lem}[thm]{Lemma}\crefname{lem}{Lemma}{Lemmas}
@@ -630,7 +631,7 @@ If $\hat{\psi}$ contains $t$, we show that removing $t$
  deleting $m(\hat{\psi})$ and $t$ gives the same mesh pattern as deleting $m(\hat{\eta})$ and $t$, which is $x$.
  So~$\psi$ is an occurrence of~$x$ in~$y$ that uses all the shaded boxes, hence $\hat{\psi}$ also uses
  all the shaded boxes by the first paragraph.
- If $\hat{\psi}$ does not contain $t$, then as $|\hat{x}|=|\hat{y}-1|$ we know that $t$ is the only letter not contained in $\hat{\psi}$,
+ If $\hat{\psi}$ does not contain $t$, then as $|\hat{x}|=|\hat{y}-1|$ we know that $t$ is the only letter not contained in $\hat{\psi}$,\todo{HU: This should be $|\hat{x}|=|\hat{y}|-1$?}
  which implies that deleting $t$ from $\hat{y}$ gives	
  $\hat{x}$. Moreover, by the definition of $\hat{y}$ we know that deleting $t$ from $\hat{y}$ gives $y$, so~$\hat{x}=y$. Again, by the first paragraph
  we know that $\hat{\psi}$ must use all the shaded boxes, because $\hat{y}$ is constructed by inserting~$t$ into $y$.
