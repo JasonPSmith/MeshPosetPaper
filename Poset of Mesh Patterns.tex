@@ -511,7 +511,6 @@ there is a shaded box in $\mX{m}{x}$ that corresponds to more than one shaded bo
 $\occX{m}{x}$, see \cref{fig:impEx}. Also note that if deleting a point merges an unshaded box with a
 shaded box then the resulting box will be unshaded, so we say deleting that point \emph{removes shadings}.
 Note that is is possible that deleting a point both merges and removes shadings.
-We define a \emph{block} of shaded boxes to be a consecutive sequence of shaded boxes in the same row or column.
 
 \begin{figure}\centering
 \begin{subfigure}[b]{0.3\textwidth}
@@ -555,53 +554,53 @@ that does not use all the shaded boxes of $p$, we can deshade the box it doesn't
 use and get an element that lies between $m$ and $p$.
 \end{proof}
 
-\begin{lem}\label{lem:adj}
-Suppose that deleting positions $i$ or $j$ from $m$ gives the same mesh pattern $p$, and their deletion does not remove shaded boxes.
-Then deleting any position $k$ from $m$, with $i\le k\le j$, also gives $p$ and does not remove shaded boxes.
-Moreover, deleting $i$ and $k$ gives the same mesh pattern as deleting $k$ and $j$.
-\end{lem}
-
-\begin{proof}
-Let $m_x$ be the value of the point in position~$x$ of~$m$, and assume~$m_i<m_j$, the case for~$m_i>m_j$ is analogous.
- It is well known that deleting two letters from a permutation gives the same subpermutation if and only if they are part
- of the same \emph{adjacency}, that is, sequence of consecutively valued letters in consecutive positions, see \cite{Smith15}. So if deleting~$i$ and
- $j$ gives the same mesh pattern they must be part of the same adjacency, so~$k$ must also be part of the same adjacency,
- hence deleting $k$ gives the same underlying permutation, and~$m_i<m_k<m_j$.
- It remains to show that deleting~$k$ results in the same shaded boxes as deleting $i$ or $j$. We prove the following claim:
- \begin{equation*}
-  \begin{tabular}{c}
-   If deleting positions $i$ or $j$ from $m$ gives the same mesh pattern $p$,\\
-   and their deletion does not remove shaded boxes, then for every\\ column~$c$
-   (resp. row~$r$) the boxes~$(c,m_x)$ (resp.~$(x,r)$) are either\\ all shaded or all unshaded, for~$i-1\le x\le j$.
-  \end{tabular}
- \end{equation*}
- Note that the implication of the claim is equivalent to saying that every row~$\pi_i-1\le r\le \pi_j$ has exactly the same shaded boxes,
- and every column~$i-1\le c\le j$ has exactly the same shaded boxes.
-
-First we consider a column~$c<i-1$. If deleting~$i$ or~$j$ removes a shaded boxes then this is true for both~$i$ and~$j$,
- otherwise column $a$ in the resulting mesh patterns would have differing number of shaded boxes. If the deletion of $i$ or $j$ does not merge boxes,
- then there cannot be a shaded box~$(c,x)$ with~$m_i<x<m_j-1$. To see this suppose~$(c,x)$ is the lowest such shaded box, then deleting~$i$
- causes~$(c,x-1)$ to be shaded, but~$(c,x-1)$ is unshaded after deleting~$j$. A similar argument shows there cannot be an unshaded box~$(c,x)$ with~$m_i<x<m_j-1$
- if deleting $i$ and $j$ merge shadings. Analogous arguments prove the same is true for any column~$c>j$, row~$r<m_i-1$ or row~$r>m_j$.
-
-It remains to consider the rectangle given by the boxes~$(c,r)$ with~$i-1\le c\le j$ and~$\pi_i-1\le r\le\pi_j$,
- for which the claim is equivalent to saying this rectangle is either all shaded or all unshaded. 
- Note that deleting $i$ causes any box in this rectangle to be shifted down and left.
- So if~$(a,b)$ is shaded, then~$(a-1,b-1)$ and~$(a+1,b+1)$ are also shaded,
- thus all boxes in that diagonal line within the rectangle are shaded.
- The north eastern most pair~$(x-1,y-1)$ and~$(x,y)$ of this diagonal are either in columns~$j-1$ and~$j$ or rows~$m_j-1$ and~$m_j$, and are shaded.
- Therefore, the boxes~$(x,y-1)$ and~$(x-1,y)$ are also shaded since deleting~$j$ does not remove shaded boxes.
- So the diagonals containing these two boxes, which are the ones above and below the original diagonal, are also fully shaded.
- Thus by induction every diagonal is fully shaded, so the whole rectangle is fully shaded.
- This completes the proof of the claim.
-
-So deleting any point 
- $i\le k\le j$ cannot remove shaded boxes, as that would imply there is a row or column with neighbouring shaded and unshaded boxes between points $i$ and $j$.
- Moreover, deleting $k$ is equivalent to merging two identical rows and two identical columns, which is the same as removing one row and one column,
- and as all the rows and columns are the same we end up with the same shadings
- irrelevant of which is removed. Furthermore, deleting any pair of points is equivalent to deleting any two rows and two columns,
- which results in the same mesh pattern, which proves the final part of the lemma.
-\end{proof}
+%\begin{lem}\label{lem:adj}
+%Suppose that deleting positions $i$ or $j$ from $m$ gives the same mesh pattern $p$, and their deletion does not remove shaded boxes.
+%Then deleting any position $k$ from $m$, with $i\le k\le j$, also gives $p$ and does not remove shaded boxes.
+%Moreover, deleting $i$ and $k$ gives the same mesh pattern as deleting $k$ and $j$.
+%\end{lem}
+%
+%\begin{proof}
+%Let $m_x$ be the value of the point in position~$x$ of~$m$, and assume~$m_i<m_j$, the case for~$m_i>m_j$ is analogous.
+% It is well known that deleting two letters from a permutation gives the same subpermutation if and only if they are part
+% of the same \emph{adjacency}, that is, sequence of consecutively valued letters in consecutive positions, see \cite{Smith15}. So if deleting~$i$ and
+% $j$ gives the same mesh pattern they must be part of the same adjacency, so~$k$ must also be part of the same adjacency,
+% hence deleting $k$ gives the same underlying permutation, and~$m_i<m_k<m_j$.
+% It remains to show that deleting~$k$ results in the same shaded boxes as deleting $i$ or $j$. We prove the following claim:
+% \begin{equation*}
+%  \begin{tabular}{c}
+%   If deleting positions $i$ or $j$ from $m$ gives the same mesh pattern $p$,\\
+%   and their deletion does not remove shaded boxes, then for every\\ column~$c$
+%   (resp. row~$r$) the boxes~$(c,m_x)$ (resp.~$(x,r)$) are either\\ all shaded or all unshaded, for~$i-1\le x\le j$.
+%  \end{tabular}
+% \end{equation*}
+% Note that the implication of the claim is equivalent to saying that every row~$\pi_i-1\le r\le \pi_j$ has exactly the same shaded boxes,
+% and every column~$i-1\le c\le j$ has exactly the same shaded boxes.
+%
+%First we consider a column~$c<i-1$. If deleting~$i$ or~$j$ removes a shaded boxes then this is true for both~$i$ and~$j$,
+% otherwise column $a$ in the resulting mesh patterns would have differing number of shaded boxes. If the deletion of $i$ or $j$ does not merge boxes,
+% then there cannot be a shaded box~$(c,x)$ with~$m_i<x<m_j-1$. To see this suppose~$(c,x)$ is the lowest such shaded box, then deleting~$i$
+% causes~$(c,x-1)$ to be shaded, but~$(c,x-1)$ is unshaded after deleting~$j$. A similar argument shows there cannot be an unshaded box~$(c,x)$ with~$m_i<x<m_j-1$
+% if deleting $i$ and $j$ merge shadings. Analogous arguments prove the same is true for any column~$c>j$, row~$r<m_i-1$ or row~$r>m_j$.
+%
+%It remains to consider the rectangle given by the boxes~$(c,r)$ with~$i-1\le c\le j$ and~$\pi_i-1\le r\le\pi_j$,
+% for which the claim is equivalent to saying this rectangle is either all shaded or all unshaded. 
+% Note that deleting $i$ causes any box in this rectangle to be shifted down and left.
+% So if~$(a,b)$ is shaded, then~$(a-1,b-1)$ and~$(a+1,b+1)$ are also shaded,
+% thus all boxes in that diagonal line within the rectangle are shaded.
+% The north eastern most pair~$(x-1,y-1)$ and~$(x,y)$ of this diagonal are either in columns~$j-1$ and~$j$ or rows~$m_j-1$ and~$m_j$, and are shaded.
+% Therefore, the boxes~$(x,y-1)$ and~$(x-1,y)$ are also shaded since deleting~$j$ does not remove shaded boxes.
+% So the diagonals containing these two boxes, which are the ones above and below the original diagonal, are also fully shaded.
+% Thus by induction every diagonal is fully shaded, so the whole rectangle is fully shaded.
+% This completes the proof of the claim.
+%
+%So deleting any point 
+% $i\le k\le j$ cannot remove shaded boxes, as that would imply there is a row or column with neighbouring shaded and unshaded boxes between points $i$ and $j$.
+% Moreover, deleting $k$ is equivalent to merging two identical rows and two identical columns, which is the same as removing one row and one column,
+% and as all the rows and columns are the same we end up with the same shadings
+% irrelevant of which is removed. Furthermore, deleting any pair of points is equivalent to deleting any two rows and two columns,
+% which results in the same mesh pattern, which proves the final part of the lemma.
+%\end{proof}
 
 \begin{lem}\label{lem:topImpure}
 If $[m,p]$ contains an impure edge, then it contains an impure edge
@@ -622,16 +621,29 @@ Suppose $x\lessdot y$ is an impure edge in $[m,p]$, and let $\eta$ be an occurre
  We show that every occurrence~$\hat{\psi}$ of $\hat{x}$ in $\hat{y}$ uses all the shaded boxes.
 
 If $\hat{\psi}$ contains $t$, we show that removing $t$ 
- from $\hat{\psi}$ gives an occurrence~$\psi$ of~$x$ in~$y$. Note that removing $t$ from $\hat{y}$ gives $y$ by construction. 
- If $m(\hat{\psi})$ and $m(\hat{\eta})$ are both before $t$ or both after $t$, then $t$ appears as the same letter of $\hat{x}$ in both occurrences,
- and removing $t$ from $\hat{\eta}$ gives
- an occurrence of $x$, so the same must be true for $\hat{\psi}$. If $t$ is between $m(\hat{\psi})$ and $m(\hat{\eta})$, 
- then note that deleting either $m(\hat{\psi})$ or $m(\hat{\eta})$ gives $\hat{x}$, since both $\hat{\psi}$ and
- $\hat{\eta}$ are occurrences of $\hat{x}$ in $\hat{y}$. So by \cref{lem:adj}
- deleting $m(\hat{\psi})$ and $t$ gives the same mesh pattern as deleting $m(\hat{\eta})$ and $t$, which is $x$.
- So~$\psi$ is an occurrence of~$x$ in~$y$ that uses all the shaded boxes, hence $\hat{\psi}$ also uses
+ from $\hat{\psi}$ gives an occurrence~$\psi$ of~$x$ in~$y$.   
+ First note that $\psi$ is an occurrence of $\cl{x}$ in $\cl{y}$ in the traditional permutation pattern sense.
+ To see this note that $m(\hat{\psi})$ and $m(\hat{\eta})$ must be part of an adjacency in $\cl{\hat{y}}$ as deleting either gives $\cl{\hat{x}}$.
+ So $m(\psi)$ and $m(\eta)$ must also be part of an adjacency in $\cl{y}$, since deleting $t$ cannot cause two letters to no longer
+ be part of an adjacency, so deleting $m(\psi)$ from $\cl{y}$ must give $\cl{x}$, since deleting $m(\eta)$ from $\cl{y}$ gives $\cl{x}$.
+ 
+Suppose $\psi$ is not an occurrence of $x$ in $y$. So there must be a region $R_\psi(i,j)$ which is not fully shaded in $y$,
+ but the box $(i,j)$ is shaded in $x$. Consider the following three sets:
+ \begin{enumerate}
+ \item[(a)] Let $A$ be the set of boxes in $\hat{x}$ which maps to $(i,j)$ when $t$ is removed from $\hat{x}$. 
+ \item[(b)] Let $B$ be the set of boxes in $\hat{y}$ which the set $A$ is mapped to by the occurrence $\hat{\psi}$.
+ \item[(c)] Let $C$ be the set of boxes in $y$ which $B$ maps to when removing $t$ from~$\hat{y}$.
+ \end{enumerate}
+ Note that $C$ is the same set as $R_\psi(i,j)$. Since to get from $R_\psi(i,j)$ to $(i,j)$ we delete $m(\psi)$
+ and to get from $C$ to $(i,j)$ we insert $t$, delete $m(\hat{\psi})$ and delete $t$,
+ which is equivalent to just deleting $m(\psi)$, since $m(\psi)$ is the same as $m(\hat{\psi})$ after deleting $t$.
+ Furthermore, each of the operations in steps $a,b$ and $c$ preserve shaded boxes, that is, they only split or merge shaded boxes, they never unshade
+ boxes, which implies that $C$ is fully shaded, since we start at a shaded box $(i,j)$. Which gives us a contradiction, since $R_\psi(i,j)$ is not fully shaded
+ but is the same set as $C$ which is fully shaded, hence $\psi$ must be an occurrence of $x$ in $y$.
+ So~$\psi$ is an occurrence of~$x$ in~$y$, so must use all the shaded boxes, hence $\hat{\psi}$ also uses
  all the shaded boxes by the first paragraph.
- If $\hat{\psi}$ does not contain $t$, then as $|\hat{x}|=|\hat{y}-1|$ we know that $t$ is the only letter not contained in $\hat{\psi}$,\todo{HU: This should be $|\hat{x}|=|\hat{y}|-1$?}
+
+If $\hat{\psi}$ does not contain $t$, then as $|\hat{x}|=|\hat{y}|-1$ we know that $t$ is the only letter not contained in $\hat{\psi}$,
  which implies that deleting $t$ from $\hat{y}$ gives	
  $\hat{x}$. Moreover, by the definition of $\hat{y}$ we know that deleting $t$ from $\hat{y}$ gives $y$, so~$\hat{x}=y$. Again, by the first paragraph
  we know that $\hat{\psi}$ must use all the shaded boxes, because $\hat{y}$ is constructed by inserting~$t$ into $y$.
