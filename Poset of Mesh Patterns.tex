@@ -622,7 +622,7 @@ Suppose $x\lessdot y$ is an impure edge in $[m,p]$, and let $\eta$ be an occurre
 
 If $\hat{\psi}$ contains $t$, we show that removing $t$ 
  from $\hat{\psi}$ gives an occurrence~$\psi$ of~$x$ in~$y$.   
- First note that $\psi$ is an occurrence of $\cl{x}$ in $\cl{y}$ in the traditional permutation pattern sense.
+ First note that $\psi$ is an occurrence of $\cl{x}$ in $\cl{y}$ in the classical permutation pattern sense.
  To see this note that $m(\hat{\psi})$ and $m(\hat{\eta})$ must be part of an adjacency in $\cl{\hat{y}}$ as deleting either gives $\cl{\hat{x}}$.
  So $m(\psi)$ and $m(\eta)$ must also be part of an adjacency in $\cl{y}$, since deleting $t$ cannot cause two letters to no longer
  be part of an adjacency, so deleting $m(\psi)$ from $\cl{y}$ must give $\cl{x}$, since deleting $m(\eta)$ from $\cl{y}$ gives $\cl{x}$.
@@ -637,7 +637,7 @@ Suppose $\psi$ is not an occurrence of $x$ in $y$. So there must be a region $R_
  Note that $C$ is the same set as $R_\psi(i,j)$. Since to get from $R_\psi(i,j)$ to $(i,j)$ we delete $m(\psi)$
  and to get from $C$ to $(i,j)$ we insert $t$, delete $m(\hat{\psi})$ and delete $t$,
  which is equivalent to just deleting $m(\psi)$, since $m(\psi)$ is the same as $m(\hat{\psi})$ after deleting $t$.
- Furthermore, each of the operations in steps $a,b$ and $c$ preserve shaded boxes, that is, they only split or merge shaded boxes, they never unshade
+ Furthermore, each of the operations in steps (a), (b) and (c) preserve shaded boxes, that is, they only split or merge shaded boxes, they never unshade
  boxes, which implies that $C$ is fully shaded, since we start at a shaded box $(i,j)$. Which gives us a contradiction, since $R_\psi(i,j)$ is not fully shaded
  but is the same set as $C$ which is fully shaded, hence $\psi$ must be an occurrence of $x$ in $y$.
  So~$\psi$ is an occurrence of~$x$ in~$y$, so must use all the shaded boxes, hence $\hat{\psi}$ also uses
