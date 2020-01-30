@@ -326,6 +326,9 @@ that equals $u$. The map we introduce is analogous to the map in \cite[Section 2
 which maps certain intervals of the permutation poset to intervals of $\mathcal{W}$.
 A \emph{descent} in a permutation $\pi=\pi_1\pi_2\ldots\pi_n$ is a pair of
 letters $\pi_i,\pi_{i+1}$ with $\pi_{i}>\pi_{i+1}$. We call $\pi_{i+1}$ the \emph{descent bottom}.
+An \emph{adjacency} in a permutation
+is a consecutive sequence of letters $\pi_{i_1} \pi_{i_2} \dotsm \pi_{i_k}$ such that
+$\pi_{i_2} = \pi_{i_1} \pm 1$, $\pi_{i_3} = \pi_{i_2} \pm 1$, etc.
 An \emph{adjacency tail} is a letter $\pi_i$ with $\pi_i=\pi_{i-1}\pm 1$.
 Let $adj(\pi)$ be the number of adjacency tails in~$\pi$.
 Consider the set $\Gamma$ of mesh patterns where the permutation has exactly one descent,
@@ -510,7 +513,7 @@ deleting a point $x$ \emph{merges shadings} if
 there is a shaded box in $\mX{m}{x}$ that corresponds to more than one shaded box in
 $\occX{m}{x}$, see \cref{fig:impEx}. Also note that if deleting a point merges an unshaded box with a
 shaded box then the resulting box will be unshaded, so we say deleting that point \emph{removes shadings}.
-Note that is is possible that deleting a point both merges and removes shadings.
+Note that it is possible that deleting a point both merges and removes shadings.
 
 \begin{figure}\centering
 \begin{subfigure}[b]{0.3\textwidth}
@@ -644,8 +647,11 @@ Suppose $\psi$ is not an occurrence of $x$ in $y$. So there must be a region $R_
  all the shaded boxes by the first paragraph.
 
 If $\hat{\psi}$ does not contain $t$, then as $|\hat{x}|=|\hat{y}|-1$ we know that $t$ is the only letter not contained in $\hat{\psi}$,
- which implies that deleting $t$ from $\hat{y}$ gives	
- $\hat{x}$. Moreover, by the definition of $\hat{y}$ we know that deleting $t$ from $\hat{y}$ gives $y$, so~$\hat{x}=y$. Again, by the first paragraph
+ which implies that deleting $t$ from $\hat{y}$ gives a pattern $\hat{x}'$ containing $\hat{x}$, perhaps
+ with extra shaded boxes (since we do not yet know that $\hat{\psi}$ uses all shaded boxes).
+ If $\hat{x}'$ has more shaded boxes than $\hat{x}$ we would obtain an embedding of $x$ into
+ $y$ that does not use all shaded boxes, which is impossible.
+ Moreover, by the definition of $\hat{y}$ we know that deleting $t$ from $\hat{y}$ gives $y$, so~$\hat{x}=y$. Again, by the first paragraph
  we know that $\hat{\psi}$ must use all the shaded boxes, because $\hat{y}$ is constructed by inserting~$t$ into $y$.
 
 Now we show that deleting $m(\hat{\psi})$ merges shaded boxes. Deleting $m(\hat{\psi})$ or $m(\hat{\eta})$ gives $\hat{x}$,
